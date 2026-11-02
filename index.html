@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tep Family · Vietnam & Thailand</title>
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F2; --ink:#1D1A17; --muted:#8C8379; --line:#E9E2D8; --card:#FFFFFF;
+  --saigon:#C0573A; --hanoi:#2F7F68; --phuket:#16798A; --bangkok:#B5852A; --travel:#6E655C;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+.hero{padding:56px 0 0}
+.kicker{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font:300 54px/1.02 var(--serif);letter-spacing:-.02em;margin:18px 0 0}
+.hero h1 em{display:inline-block;font-style:italic;font-size:.5em;color:var(--muted);margin-bottom:10px;letter-spacing:0}
+.dates{font:400 17px/1.4 var(--serif);margin-top:18px}
+.route{position:relative;height:66px;margin:36px 4px 0 4px}
+.route b{position:absolute;left:0;right:0;top:4px;height:1px;background:var(--line)}
+.route span{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;text-align:center;font:500 12px/1.3 var(--sans);color:var(--muted);white-space:nowrap}
+.route span:first-of-type{transform:none;align-items:flex-start;text-align:left;margin-left:-4px}
+.route span:last-of-type{transform:translateX(-100%);align-items:flex-end;text-align:right;margin-left:4px}
+.route i{width:9px;height:9px;border-radius:50%;background:var(--c);margin-bottom:10px}
+.count{display:inline-block;margin-top:18px;font:500 12px/1 var(--sans);letter-spacing:.04em;padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:#fff}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:40px;height:46vh;min-height:260px;max-height:420px}
+.mosaic a{position:relative;overflow:hidden}
+.mosaic a::after{content:"";position:absolute;inset:auto 0 0 0;height:4px;background:var(--c)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:10;background:rgba(250,247,242,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;padding-top:0;padding-bottom:0}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:none;font:500 13px/1 var(--sans);color:var(--muted);padding:18px 0 16px;border-bottom:2px solid transparent}
+nav a.on{color:var(--ink);border-color:var(--c,var(--ink))}
+
+/* CHAPTER */
+.chapter{padding-top:72px}
+.cover{position:relative;height:62vh;min-height:380px;max-height:560px;overflow:hidden}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.62))}
+.cover .t{position:absolute;left:0;right:0;bottom:0;z-index:2;color:#fff;padding:0 24px 26px;max-width:720px;margin:0 auto}
+.cover .n{font:500 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.85}
+.cover h2{font:300 46px/1 var(--serif);letter-spacing:-.02em;margin-top:10px}
+.cover .d{font:400 15px/1 var(--serif);margin-top:10px;opacity:.92}
+.cover .bar{position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--c);z-index:3}
+
+.stay{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.stay small{display:block;font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.stay strong{font:400 19px/1.25 var(--serif)}
+.stay .when{font-size:13px;color:var(--muted);margin-top:3px}
+
+.day{display:grid;grid-template-columns:50px 1fr;gap:0 12px;padding:34px 0;border-bottom:1px solid var(--line)}
+.day .num{font:300 44px/.9 var(--serif);color:var(--c)}
+.day .wd{font:600 10px/1.35 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.day h3{font:400 23px/1.2 var(--serif);letter-spacing:-.01em;margin-top:-2px}
+.day.opt .num{font-size:20px;line-height:1.1;font-style:italic}
+.day.today{background:linear-gradient(90deg,transparent,rgba(0,0,0,.02))}
+.tag{display:inline-block;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--c);margin-bottom:8px}
+.items{list-style:none;margin-top:16px}
+.items li{padding:12px 0;border-top:1px dashed var(--line)}
+.items li:first-child{border-top:0;padding-top:4px}
+.row{display:flex;gap:12px;align-items:baseline}
+.time{flex:none;width:62px;font:500 12px/1.4 var(--sans);color:var(--muted);font-variant-numeric:tabular-nums}
+.what{font:500 15px/1.4 var(--sans)}
+.pick{font:600 10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--c);padding:4px 7px;border-radius:4px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.pick.alt{background:transparent;color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+.note{font-size:13px;color:var(--muted);margin:3px 0 0 74px;line-height:1.45}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 0 74px}
+.btn{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);padding:8px 11px;border-radius:99px;background:#fff;border:1px solid var(--line);color:var(--ink);transition:.15s}
+.btn:hover{border-color:var(--c,var(--ink))}
+.btn.go{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn svg{width:12px;height:12px;flex:none}
+.eta{display:inline-flex;align-items:center;gap:5px;font:500 11px/1 var(--sans);color:var(--muted);padding:8px 2px}
+.eta svg{width:12px;height:12px}
+
+/* SECTION HEAD */
+.sec{padding-top:96px}
+.sec h2{font:300 40px/1.05 var(--serif);letter-spacing:-.02em}
+.sec .sub{color:var(--muted);margin-top:10px;font-size:14px}
+
+/* PASSES */
+.group{font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:40px 0 14px}
+.pass{position:relative;background:var(--card);border-radius:18px;box-shadow:0 1px 0 var(--line),0 10px 30px -18px rgba(40,30,20,.25);margin-bottom:14px;overflow:hidden}
+.pass .top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px 0;font:500 12px/1 var(--sans);color:var(--muted)}
+.pass .fn{font:600 12px/1 var(--sans);letter-spacing:.08em;color:var(--ink)}
+.pass .legs{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:10px;padding:16px 20px 18px}
+.pass .city{font:400 25px/1.05 var(--serif);letter-spacing:-.01em}
+.pass .hm{font:500 13px/1 var(--sans);color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+.pass .r{text-align:right}
+.pass .plane{color:var(--c);padding-bottom:22px}
+.pass .plane svg{width:22px;height:22px}
+.pass .stub{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 20px;border-top:1.5px dashed var(--line);position:relative}
+.pass .stub::before,.pass .stub::after{content:"";position:absolute;top:-10px;width:20px;height:20px;border-radius:50%;background:var(--paper)}
+.pass .stub::before{left:-10px}.pass .stub::after{right:-10px}
+.who{font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
+.pass .edge{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+
+/* STAYS */
+.hotels{margin-top:30px}
+.hotel{display:grid;grid-template-columns:6px 1fr;gap:0 18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.hotel .sw{background:var(--c);border-radius:3px}
+.hotel strong{font:400 21px/1.2 var(--serif)}
+.hotel .when{font-size:13px;color:var(--muted);margin-top:4px}
+.hotel .acts{margin:12px 0 0}
+
+/* NOTES */
+.check{list-style:none;margin-top:28px}
+.check li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+.check label{display:contents;cursor:pointer}
+.check input{appearance:none;width:22px;height:22px;border:1.5px solid #CFC6BA;border-radius:6px;margin-top:1px;cursor:pointer;display:grid;place-items:center}
+.check input:checked{background:var(--ink);border-color:var(--ink)}
+.check input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check .tx{font-size:15px}
+.check .acts{margin:10px 0 0}
+
+/* KIDS */
+#kids{--k:var(--saigon)}
+.players{display:flex;gap:8px;margin-top:26px}
+.player{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 6px 12px;border-radius:16px;border:1.5px solid var(--line);background:#fff;cursor:pointer;font:600 16px/1.1 var(--sans);color:var(--ink);min-height:96px}
+.player small{font:500 12px/1 var(--sans);color:var(--muted)}
+.player .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:400 20px/1 var(--serif);color:#fff;background:var(--pc)}
+.player[aria-pressed="true"]{border:2px solid var(--ink);box-shadow:0 8px 20px -14px rgba(0,0,0,.5)}
+.score{margin-top:16px;background:var(--ink);color:#fff;border-radius:22px;padding:22px 22px 20px}
+.score .top{display:flex;justify-content:space-between;align-items:flex-end}
+.score .pts{font:300 54px/0.9 var(--serif)}
+.score .pts small{font:500 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-left:6px}
+.score .tier{text-align:right}
+.score .tier b{display:block;font:400 22px/1 var(--serif);margin-bottom:4px}
+.score .tier span{font:500 12px/1.4 var(--sans);opacity:.65}
+.meter{height:8px;border-radius:9px;background:rgba(255,255,255,.14);margin-top:18px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--saigon),var(--hanoi),var(--phuket),var(--bangkok));transition:width .4s}
+.stamps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
+.stamp{aspect-ratio:1;display:grid;place-items:center;border-radius:50%}
+.stamp svg{width:100%;height:100%}
+.stamp.off{opacity:.45}
+.stamp.on{background:#FAF7F2}
+.stamp.on svg{transform:rotate(-12deg)}
+.cities{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:26px}
+.cities::-webkit-scrollbar{display:none}
+.cbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 2px;border-radius:16px;min-width:0;border:1.5px solid var(--line);background:#fff;font:600 15px/1 var(--sans);color:var(--ink);cursor:pointer;min-height:60px}
+.cbtn .ct{font:500 13px/1 var(--sans);color:var(--muted)}
+.cbtn[aria-pressed="true"]{background:var(--cc);border-color:var(--cc);color:#fff}
+.cbtn[aria-pressed="true"] .ct{color:rgba(255,255,255,.85)}
+.hunt-h{display:flex;justify-content:space-between;align-items:baseline;margin:30px 0 4px;gap:10px}
+.hunt-h h3{font:400 26px/1.1 var(--serif);color:var(--kt)}
+.hunt-h span{font:600 13px/1 var(--sans);color:var(--muted);white-space:nowrap}
+.lbl{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
+.find{background:#fff;border-radius:18px;border:1.5px solid var(--line);margin-bottom:10px;overflow:hidden;transition:border-color .2s}
+.find.done{border-color:var(--k)}
+.find .main{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:center;width:100%;text-align:left;background:none;border:0;padding:16px 16px 10px;cursor:pointer;color:var(--ink);font:inherit;min-height:72px}
+.tick{width:40px;height:40px;border-radius:50%;border:2px solid #D6CCBF;display:grid;place-items:center;transition:.2s}
+.tick svg{width:20px;height:20px;opacity:0}
+.find.done .tick{background:var(--k);border-color:var(--k)}
+.find.done .tick svg{opacity:1}
+.find .t1{font:600 17px/1.3 var(--sans)}
+.find .t2{font:500 13px/1.3 var(--sans);color:var(--muted);margin-top:4px}
+.plus{font:700 14px/1 var(--sans);color:var(--kt);white-space:nowrap}
+.find.done .plus{color:var(--muted);font-weight:600}
+.reveal{display:inline-flex;align-items:center;gap:6px;margin:0 16px 14px 70px;padding:10px 14px;border-radius:99px;border:1.5px dashed var(--k);background:transparent;color:var(--kt);font:600 14px/1 var(--sans);cursor:pointer;min-height:44px}
+.reveal svg{width:16px;height:16px}
+.fact{display:none;margin:0 16px 16px 70px;font:400 17px/1.5 var(--serif);color:var(--ink)}
+.fact .x{display:block;font:400 14px/1.5 var(--sans);color:var(--muted);margin-top:6px}
+.find.open .fact{display:block}
+.find.open .reveal{display:none}
+.say{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.word{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:16px;text-align:left;cursor:pointer;font:inherit;color:var(--ink);min-height:124px;display:flex;flex-direction:column}
+.word b{font:400 24px/1.1 var(--serif)}
+.word .pr{font:600 15px/1.3 var(--sans);color:var(--kt);white-space:nowrap;margin-top:6px}
+.word .mn{font:500 14px/1.3 var(--sans);color:var(--muted);margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.word.done{border-color:var(--k);background:color-mix(in srgb,var(--k) 8%,#fff)}
+.word .mini{width:24px;height:24px;flex:none;border-radius:50%;border:2px solid #D6CCBF;display:grid;place-items:center}
+.word.done .mini{background:var(--k);border-color:var(--k)}
+.word .mini svg{width:13px;height:13px;opacity:0}.word.done .mini svg{opacity:1}
+.chal{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;width:100%;text-align:left;padding:20px;border-radius:20px;border:2px dashed var(--k);background:transparent;cursor:pointer;font:inherit;color:var(--ink)}
+.chal .t1{font:400 20px/1.3 var(--serif)}
+.chal .t2{font:600 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--kt);margin-bottom:8px}
+.chal.done{border-style:solid;border-color:var(--k);background:var(--k);color:#fff}
+.chal.done .t2{color:rgba(255,255,255,.8)}
+.chal .tick{border-color:var(--k)}
+.chal.done .tick{background:#fff;border-color:#fff}.chal.done .tick svg{opacity:1}.chal.done .tick svg path{stroke:var(--k)}
+.kidnote{font-size:13px;color:var(--muted);margin-top:22px;line-height:1.5}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font:inherit;cursor:pointer;padding:10px 0;min-height:44px}
+footer.wrap{margin-top:110px;padding:40px 0 60px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6}
+footer h4{font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px;color:var(--ink)}
+footer a{text-decoration:underline;text-underline-offset:2px}
+
+/* DESKTOP */
+@media (min-width:900px){
+  .hero{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto;padding:56px 40px 0;min-height:calc(100vh - 56px)}
+  .hero>.wrap{padding:0;max-width:none;margin:0}
+  .hero h1{font-size:76px}
+  .mosaic{grid-template-columns:1fr 1fr;height:600px;max-height:72vh;margin:0;gap:6px}
+  .mosaic a{border-radius:4px}
+  .cover{max-height:620px}
+  .cover h2{font-size:72px}
+  .sec h2{font-size:56px}
+  .day{grid-template-columns:90px 1fr}
+  .day .num{font-size:60px}
+  .passes{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  .wide{max-width:1040px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">A family journal</div>
+    <h1><em>Tep Family ·</em><br>Vietnam &amp;<br>Thailand</h1>
+    <div class="dates">November 19 – December 6, 2026</div>
+    <div class="route"><b></b>
+      <span style="left:0;--c:var(--saigon)"><i></i>Saigon</span>
+      <span style="left:33.33%;--c:var(--hanoi)"><i></i>Hanoi<br>Ha Long</span>
+      <span style="left:66.66%;--c:var(--phuket)"><i></i>Phuket</span>
+      <span style="left:100%;--c:var(--bangkok)"><i></i>Bangkok</span>
+    </div>
+    <div class="count" id="count">18 days · 4 cities · 7 of us</div>
+  </div>
+  <div class="mosaic wrap wide" style="padding:0">
+    <a href="#saigon" style="--c:var(--saigon)"><img src="img/saigon.jpg" alt="Saigon Central Post Office"></a>
+    <a href="#hanoi" style="--c:var(--hanoi)"><img src="img/halong.jpg" alt="Limestone islands in Ha Long Bay"></a>
+    <a href="#phuket" style="--c:var(--phuket)"><img src="img/phuket.jpg" alt="The Big Buddha, Phuket"></a>
+    <a href="#bangkok" style="--c:var(--bangkok)"><img src="img/bangkok.jpg" alt="Wat Arun from the Chao Phraya River"></a>
+  </div>
+</header>
+
+<nav id="nav"><div class="wrap">
+  <a href="#saigon" style="--c:var(--saigon)">Saigon</a>
+  <a href="#hanoi" style="--c:var(--hanoi)">Hanoi</a>
+  <a href="#phuket" style="--c:var(--phuket)">Phuket</a>
+  <a href="#bangkok" style="--c:var(--bangkok)">Bangkok</a>
+  <a href="#flights">Flights</a>
+  <a href="#stays">Stays</a>
+  <a href="#kids">Kids</a>
+  <a href="#notes">Before we go</a>
+</div></nav>
+
+<main id="main"></main>
+
+<script>
+/* ---------- links (each checked to load) ---------- */
+const M = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const L = {
+  grab: "https://grab.onelink.me/2695613898",
+  keCheck: "https://www.koreanair.com/check-in", keTrip: "https://www.koreanair.com/reservation/search",
+  vjCheck: "https://www.vietjetair.com/en/checkin", vjTrip: "https://www.vietjetair.com/en/manage-booking",
+  aaCheck: "https://www.airasia.com/check-in/en/gb",
+  jxCheck: "https://www.starlux-airlines.com/en-US/check-in-fly/check-in-now/online-check-in/",
+  jxTrip: "https://www.starlux-airlines.com/en-US/booking/manage-my-trip/manage-my-trip",
+  ferry: "https://greenlines-dp.com/",
+  cruise: "https://grandpioneers.com/reservation",
+  nightBus: "https://city-sightseeing.com/en/156/saigon/3914/saigon-night-tour",
+  nguyenHue: "https://share.google/2Z4HLTGNPFPjuiUNG",
+  ninhBinh: "https://youtube.com/shorts/9vGAc1ps7i8?si=ujgvbCgSFobPPeMG",
+  carnival: "https://carnivalmagic.fun/booking/",
+  fantasea: "https://www.phuket-fantasea.com/eng/information/faqs_tickets.php",
+  bigBuddha: "https://www.visit-thailand.org/cities/24-phuket/phuket-big-buddha",
+  oldTown: "https://thaipedia.asia/en/travel/phuket/sights/phuket-sunday-market/",
+  hong: "https://johngray-seacanoe.com/tour/hong-by-starlight/",
+  phiphi: "https://lovephukettours.com/phi-phi-island-tour-luxury-catamaran",
+  palace: "https://www.royalgrandpalace.th/en/home",
+  watPho: "https://www.watpho.com",
+  watArun: "https://www.tourismthailand.org/Attraction/phraprang-wat-arun-ratchawararam-ratchawora-mahawi",
+  pearl: "https://www.orientavista.com/en/wonderful-pearl-dinner-cruise/",
+  princess: "https://www.chaophrayaprincess.com/",
+  safari: "https://safariworld.com/showtime/",
+  jim: "https://jimthompsonhouse.org/visitor-information/",
+  sealife: "https://www.visitsealife.com/bangkok/en/tickets/",
+  skywalk: "https://www.kingpowermahanakhon.co.th/experience/mahanakhon-skywalk",
+  chatuchak: "https://www.chatuchakmarket.org/opening-times/",
+  evisa: "https://evisa.gov.vn", tdac: "https://tdac.immigration.go.th"
+};
+const HOTEL = {
+  sherwood: {name:"Sherwood Suites", city:"saigon", when:"Nov 20 – 21 · District 1", site:"https://www.sherwoodsuites.vn/", map:M("Sherwood Suites 192 Nam Ky Khoi Nghia Ho Chi Minh City")},
+  fusion: {name:"Fusion Original Saigon Centre", city:"saigon", when:"Nov 21 – 24 · inside Saigon Centre", site:"https://saigoncentre.fusionoriginals.com/", map:M("Fusion Original Saigon Centre 65 Le Loi Ho Chi Minh City")},
+  tirant: {name:"Tirant Hotel", city:"hanoi", when:"Nov 24 – 29 · Old Quarter", site:"https://tiranthotel.com/", map:M("Tirant Hotel Hanoi Old Quarter")},
+  cruise: {name:"Grand Pioneers Halong Bay Cruise", city:"hanoi", when:"Nov 25 – 26 · one night on the bay", site:"https://grandpioneers.com/", map:M("Grand Pioneers Cruise Tuan Chau International Marina")},
+  merlin: {name:"Phuket Marriott Resort & Spa, Merlin Beach", city:"phuket", when:"Nov 29 – Dec 2", site:"https://www.marriott.com/en-us/hotels/hktmb-phuket-marriott-resort-and-spa-merlin-beach/overview/", map:M("Phuket Marriott Resort and Spa Merlin Beach")},
+  dt: {name:"DoubleTree by Hilton Bangkok Ploenchit", city:"bangkok", when:"Dec 2 – 6", site:"https://www.hilton.com/en/hotels/bkksodi-doubletree-bangkok-ploenchit/", map:M("DoubleTree by Hilton Bangkok Ploenchit")}
+};
+
+/* ---------- icons ---------- */
+const I = {
+  car:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 16h14M6 16l1.5-6h9L18 16M7 19v-3M17 19v-3"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>',
+  out:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  plane:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg>'
+};
+const B = (label, href, kind) => `<a class="btn${kind==='go'?' go':''}" href="${href}" target="_blank" rel="noopener">${kind==='map'?I.pin:kind==='ride'?I.car:I.out}${label}</a>`;
+const grab = l => B(l||"Grab", L.grab, "ride");
+const map = (q,l) => B(l||"Map", M(q), "map");
+const site = (l,h) => B(l, h, "site");
+const go = (l,h) => B(l, h, "go");
+const eta = t => `<span class="eta">${I.clock}${t}</span>`;
+
+/* ---------- days (from the itinerary page + sheet) ---------- */
+const CITIES = [
+ {id:"saigon", n:"01", name:"Ho Chi Minh City", short:"Saigon", dates:"Nov 20 – 24 · 4 nights", img:"img/saigon.jpg", pos:"50% 60%", stays:["sherwood","fusion"], days:[
+  {d:"20", wd:"Fri Nov 20", t:"Arrive late", items:[
+    {time:"10:25 PM", what:"Land at SGN on KE475", note:"Straight to Sherwood Suites and bed.", acts:[grab("Airport ride"), map("Sherwood Suites Ho Chi Minh City","Hotel")]}]},
+  {d:"21", wd:"Sat Nov 21", t:"District 1 on foot", items:[
+    {time:"Day", what:"Move to Fusion Original Saigon Centre", acts:[grab()]},
+    {time:"3:30 PM", what:"Notre Dame Cathedral", note:"Outside only, under restoration.", acts:[map("Notre Dame Cathedral Saigon")], eta:"Walk 10–15 min"},
+    {time:"Next", what:"Central Post Office", note:"Send a postcard home.", acts:[map("Saigon Central Post Office")], eta:"Walk 1–2 min"},
+    {time:"Dusk", what:"Nguyen Hue walking street", acts:[B("Map",L.nguyenHue,"map")], eta:"Walk 5–10 min"},
+    {time:"Evening", what:"Ben Nghe Street Food Market", note:"Bring cash.", acts:[map("Ben Nghe Street Food Market 134 Nam Ky Khoi Nghia")], eta:"Walk 10 min"}]},
+  {d:"22", wd:"Sun Nov 22", t:"Vung Tau, Grandma’s hometown", items:[
+    {time:"9 AM", what:"Fast ferry from Pier 4 Bach Dang", note:"GreenlinesDP, about 2 hours.", acts:[go("Ferry booking",L.ferry), map("Bach Dang Speedboat Terminal 10B Ton Duc Thang","Pier"), grab("Grab to pier")], eta:"Car 5–10 min"},
+    {time:"3 PM", what:"Ferry back from Ho May terminal", note:"Back around 5 PM.", acts:[map("Ho May ferry terminal Vung Tau","Terminal")]}]},
+  {d:"23", wd:"Mon Nov 23", t:"Markets and skyline", items:[
+    {time:"8 AM", what:"Ben Thanh Market", acts:[map("Ben Thanh Market")], eta:"Walk 5–10 min"},
+    {time:"4:30 PM", what:"Landmark 81 SkyView at sunset", acts:[grab(), map("Landmark 81 SkyView")], eta:"Grab 15–25 min"},
+    {time:"7 PM", what:"Open-top night bus tour", acts:[go("Bus tickets",L.nightBus), map("Saigon Opera House","Departure")], eta:"Walk 10 min"}]},
+  {opt:true, d:"Maybe", wd:"Optional", t:"Cu Chi Tunnels", items:[
+    {time:"", what:"Hot and tight, hard for the grandparents. Probably skipping.", acts:[map("Cu Chi Tunnels")], eta:"1.5–2 hr each way"}]},
+  {d:"24", wd:"Tue Nov 24", t:"Fly north", items:[
+    {time:"Noon", what:"Check out, ride to the airport", acts:[grab("Airport ride")]},
+    {time:"3:00 PM", what:"VJ152 to Hanoi", acts:[go("Check in",L.vjCheck)]}]}
+ ]},
+ {id:"hanoi", n:"02", name:"Hanoi & Ha Long Bay", short:"Hanoi", dates:"Nov 24 – 29 · 5 nights", img:"img/halong.jpg", pos:"50% 50%", stays:["tirant","cruise"], days:[
+  {d:"24", wd:"Tue Nov 24", t:"Arrive, early night", items:[
+    {time:"5:10 PM", what:"Land in Hanoi", acts:[grab("Hotel ride"), map("Tirant Hotel Hanoi","Hotel")]},
+    {time:"Evening", what:"Easy dinner near the hotel", note:"Ha Long pickup is 8 AM.", eta:"Walk 0–10 min"}]},
+  {d:"25", wd:"Wed Nov 25", t:"A night on Ha Long Bay", items:[
+    {time:"8 AM", what:"Van pickup to the bay", acts:[go("Cruise & transfer",L.cruise)], eta:"About 2.5 hr"},
+    {time:"Overnight", what:"Grand Pioneers cruise"},
+    {time:"Nov 26", what:"Back at the Tirant mid-afternoon"}]},
+  {d:"27", wd:"Fri Nov 27", t:"Ninh Binh", items:[
+    {time:"7:30 AM", what:"Day trip by private car", note:"Back around 6 PM.", acts:[site("Preview",L.ninhBinh), map("Ninh Binh")], eta:"About 2 hr each way"},
+    {time:"Fri or Sat", what:"Old Quarter night walking street", acts:[map("Hoan Kiem Lake walking street")], eta:"Walk 0–10 min"}]},
+  {d:"28", wd:"Sat Nov 28", t:"Bat Trang pottery", items:[
+    {time:"8:30 AM", what:"Pottery village, kids’ class", note:"Back by lunch.", acts:[grab(), map("Bat Trang Pottery Village")], eta:"Grab 20–30 min"}]},
+  {d:"29", wd:"Sun Nov 29", t:"To Thailand", items:[
+    {time:"8:45 AM", what:"Leave for the airport", acts:[grab("Airport ride")]},
+    {time:"12:20 PM", what:"FD641 to Bangkok, then on to Phuket", acts:[go("Check in",L.aaCheck)]}]}
+ ]},
+ {id:"phuket", n:"03", name:"Phuket", short:"Phuket", dates:"Nov 29 – Dec 2 · 3 nights", img:"img/phuket.jpg", pos:"30% 40%", stays:["merlin"], days:[
+  {d:"29", wd:"Sun Nov 29", t:"Arrive at the Merlin", items:[
+    {time:"5:35 PM", what:"Land in Phuket", acts:[grab("Hotel ride"), map("Phuket Marriott Resort Merlin Beach","Hotel")]},
+    {time:"7 PM", what:"Dinner at the resort"}]},
+  {d:"30", wd:"Mon Nov 30", t:"Elephants and Carnival Magic", items:[
+    {time:"8:15 AM", what:"Elephant sanctuary, 9:30 AM start", note:"Meeting point in Paklok. Arrive 15 min early.", acts:[map("Paklok Phuket","Meeting point")], eta:"Car 55–70 min"},
+    {time:"7 PM", what:"Carnival Magic", pick:"Our show", note:"Book the ride back; Grab is scarce after 10 PM.", acts:[go("Tickets",L.carnival), grab(), map("Carnival Magic Kamala Phuket")], eta:"Car 25–35 min"}]},
+  {d:"1", wd:"Tue Dec 1", t:"Temples, then the pool", items:[
+    {time:"7–9 AM", what:"Wat Chalong", acts:[grab(), map("Wat Chalong Phuket")], eta:"Car 25–35 min"},
+    {time:"Morning", what:"Big Buddha", note:"Cover shoulders and knees.", acts:[site("Info",L.bigBuddha), map("Big Buddha Phuket")], eta:"15 min on"},
+    {time:"Lunch", what:"Old Phuket Town", acts:[site("Info",L.oldTown), map("Old Phuket Town")]},
+    {time:"Afternoon", what:"Pool time at the resort"},
+    {time:"Backup", what:"Phuket FantaSea", pick:"Backup", alt:true, acts:[site("Tickets",L.fantasea)]}]},
+  {opt:true, d:"Maybe", wd:"Optional", t:"Long days, probably skip", items:[
+    {time:"", what:"Hong by Starlight sea canoe", acts:[site("Tour",L.hong)], eta:"About 10 hr"},
+    {time:"", what:"Phi Phi catamaran", acts:[site("Tour",L.phiphi)], eta:"About 9 hr"}]},
+  {d:"2", wd:"Wed Dec 2", t:"Reef, then Bangkok", items:[
+    {time:"Morning", what:"Snorkel the house reef", note:"Free gear. High tide only."},
+    {time:"3:25 PM", what:"VZ2301 to Bangkok", acts:[grab("Airport ride"), go("Check in",L.vjCheck)]}]}
+ ]},
+ {id:"bangkok", n:"04", name:"Bangkok", short:"Bangkok", dates:"Dec 2 – 6 · 4 nights", img:"img/bangkok.jpg", pos:"45% 60%", stays:["dt"], days:[
+  {d:"2", wd:"Wed Dec 2", t:"Arrive", items:[
+    {time:"4:55 PM", what:"Land, check in at the DoubleTree", acts:[grab("Hotel ride"), map("DoubleTree by Hilton Bangkok Ploenchit","Hotel")]}]},
+  {d:"3", wd:"Thu Dec 3", t:"Temples and the river", items:[
+    {time:"8:30 AM", what:"Grand Palace & Wat Phra Kaew", note:"Tell the driver “Mani Noppharat Gate”.", acts:[grab(), site("Official site",L.palace)], eta:"Car 30–50 min"},
+    {time:"Late AM", what:"Wat Pho, Reclining Buddha", acts:[site("Official site",L.watPho), map("Wat Pho Bangkok")], eta:"Next door"},
+    {time:"Midday", what:"Break at the hotel"},
+    {time:"Evening", what:"River dinner cruise, Wat Arun lit up", note:"Check the pier on the ticket; arrive 30 min early.", acts:[go("Wonderful Pearl",L.pearl), site("Chao Phraya Princess",L.princess), site("Wat Arun",L.watArun), grab()], eta:"Car 25–45 min"}]},
+  {d:"4", wd:"Fri Dec 4", t:"David’s pick", items:[
+    {time:"Option C", what:"Jim Thompson House, SEA LIFE, SkyWalk", pick:"Recommended", acts:[site("Jim Thompson",L.jim), site("SEA LIFE",L.sealife), site("SkyWalk",L.skywalk)], eta:"BTS or Grab"},
+    {time:"Option B", what:"Safari World, full day", pick:"Good alternative", alt:true, acts:[site("Safari World",L.safari), grab()], eta:"Car 45–60 min"},
+    {time:"Option A", what:"Floating market, 7 AM start", acts:[map("Damnoen Saduak Floating Market")], eta:"Car 1.5–2 hr"}]},
+  {d:"5", wd:"Sat Dec 5", t:"Father’s Day holiday", items:[
+    {time:"9 AM", what:"Chatuchak Weekend Market", acts:[site("Hours",L.chatuchak), map("Chatuchak Weekend Market")], eta:"BTS to Mo Chit"},
+    {time:"Late AM", what:"Children’s Discovery Museum", note:"Call ahead.", acts:[map("Children's Discovery Museum Bangkok Chatuchak")], eta:"Walk 5 min"},
+    {time:"5–6 PM", what:"Chinatown, Yaowarat Road", acts:[grab(), map("Yaowarat Road Bangkok")], eta:"MRT to Wat Mangkon"}]},
+  {d:"6", wd:"Sun Dec 6", t:"Home", items:[
+    {time:"10:15 AM", what:"Leave for the airport", acts:[grab("Airport ride")]},
+    {time:"1:45 PM", what:"JX742 to Taipei, home 6:33 PM", acts:[go("Check in",L.jxCheck)]}]}
+ ]}
+];
+
+const FLIGHTS = [
+ {g:"Getting there · family of 5", c:"travel", rows:[
+  ["Thu Nov 19","KE3072","Portland","7:00 AM","Seattle","8:18 AM","Family of 5",L.keCheck,L.keTrip],
+  ["Thu Nov 19","KE42","Seattle","11:00 AM","Seoul","3:55 PM +1","Family of 5",L.keCheck,L.keTrip],
+  ["Fri Nov 20","KE475","Seoul","6:50 PM","Saigon","10:25 PM","Family of 5",L.keCheck,L.keTrip]]},
+ {g:"Across the region · all 7", c:"region", rows:[
+  ["Tue Nov 24","VJ152","Saigon","3:00 PM","Hanoi","5:10 PM","All 7",L.vjCheck,L.vjTrip,"saigon"],
+  ["Sun Nov 29","FD641","Hanoi","12:20 PM","Bangkok","2:15 PM","All 7",L.aaCheck,null,"hanoi"],
+  ["Sun Nov 29","Connecting","Bangkok","4:05 PM","Phuket","5:35 PM","All 7",L.aaCheck,null,"phuket"],
+  ["Wed Dec 2","VZ2301","Phuket","3:25 PM","Bangkok","4:55 PM","All 7",L.vjCheck,L.vjTrip,"bangkok"]]},
+ {g:"Coming home · family of 5", c:"travel", rows:[
+  ["Sun Dec 6","JX742","Bangkok","1:45 PM","Taipei","6:25 PM","Family of 5",L.jxCheck,L.jxTrip],
+  ["Sun Dec 6","JX32","Taipei","8:30 PM","Seattle","3:05 PM","Family of 5",L.jxCheck,L.jxTrip],
+  ["Sun Dec 6","JX7020","Seattle","5:40 PM","Portland","6:33 PM","Family of 5",L.jxCheck,L.jxTrip]]}
+];
+
+const NOTES = [
+ ["Vietnam e-visa for each of us, before Nov 19", [go("Apply",L.evisa)]],
+ ["Thailand digital arrival card (TDAC), within 3 days before each arrival", [go("File TDAC",L.tdac)]],
+ ["Temples: covered shoulders and knees, kids too", []],
+ ["Cash for street food markets", []],
+ ["Grab installed and set up; 7-seaters fit all of us", [grab("Get Grab")]],
+ ["Every time on this page is local time", []]
+];
+
+/* ---------- render ---------- */
+const col = c => `var(--${c})`;
+let h = "";
+for (const c of CITIES) {
+  h += `<section class="chapter" id="${c.id}" style="--c:${col(c.id)}">
+   <div class="cover"><img src="${c.img}" alt="" style="object-position:${c.pos}"><div class="t"><div class="n">${c.n} · ${c.dates}</div><h2>${c.name}</h2></div><div class="bar"></div></div>
+   <div class="wrap">
+    ${c.stays.map(k=>{const s=HOTEL[k];return `<div class="stay"><div><small>Staying</small><strong>${s.name}</strong><div class="when">${s.when}</div></div><div class="acts" style="margin:0;flex:none">${B("Map",s.map,"map")}</div></div>`}).join("")}
+    ${c.days.map(d=>`<article class="day${d.opt?' opt':''}" data-date="${d.wd}">
+      <div><div class="num">${d.d}</div><div class="wd">${d.wd.split(" ").slice(0,2).join("<br>")}</div></div>
+      <div><h3>${d.t}</h3><ul class="items">${d.items.map(it=>`<li>
+        <div class="row"><span class="time">${it.time}</span><span class="what">${it.what}${it.pick?`<span class="pick${it.alt?' alt':''}">${it.pick}</span>`:''}</span></div>
+        ${it.note?`<div class="note">${it.note}</div>`:''}
+        ${(it.acts||it.eta)?`<div class="acts">${(it.acts||[]).join("")}${it.eta?eta(it.eta):''}</div>`:''}
+      </li>`).join("")}</ul></div>
+    </article>`).join("")}
+   </div></section>`;
+}
+h += `<section class="sec wrap wide" id="flights"><div style="max-width:672px"><div class="kicker">Getting around</div><h2 style="margin-top:14px">Flights</h2><div class="sub">Local times. One tap to check in.</div></div>
+ ${FLIGHTS.map(g=>`<div class="group">${g.g}</div><div class="passes">${g.rows.map(r=>{const cc=r[9]?col(r[9]):"var(--travel)";return `<div class="pass" style="--c:${cc}"><div class="edge"></div>
+   <div class="top"><span>${r[0]}</span><span class="fn">${r[1]}</span></div>
+   <div class="legs"><div><div class="city">${r[2]}</div><div class="hm">${r[3]}</div></div><div class="plane">${I.plane.replace('<svg','<svg style="transform:rotate(90deg)"')}</div><div class="r"><div class="city">${r[4]}</div><div class="hm">${r[5]}</div></div></div>
+   <div class="stub"><span class="who">${r[6]}</span><span class="acts" style="margin:0">${go("Check in",r[7])}${r[8]?site("Trip",r[8]):''}</span></div></div>`}).join("")}</div>`).join("")}
+</section>`;
+h += `<section class="sec wrap" id="stays"><div class="kicker">Where we sleep</div><h2 style="margin-top:14px">Stays</h2>
+ <div class="hotels">${Object.values(HOTEL).map(s=>`<div class="hotel" style="--c:${col(s.city)}"><div class="sw"></div><div><strong>${s.name}</strong><div class="when">${s.when}</div><div class="acts">${B("Map",s.map,"map")}${site("Website",s.site)}</div></div></div>`).join("")}</div></section>`;
+h += `<section class="sec wrap" id="kids"></section>`;
+h += `<section class="sec wrap" id="notes"><div class="kicker">Checklist</div><h2 style="margin-top:14px">Before we go</h2>
+ <ul class="check">${NOTES.map((n,i)=>`<li><label><input type="checkbox" data-k="n${i}"><div><div class="tx">${n[0]}</div>${n[1].length?`<div class="acts">${n[1].join("")}</div>`:''}</div></label></li>`).join("")}</ul></section>`;
+h += `<footer class="wrap"><h4>Photo credits</h4>
+ Saigon Central Post Office: Steffen Schmitz, <a href="https://commons.wikimedia.org/wiki/File:Ho_Chi_Minh_City,_Central_Post_Office,_2020-01_CN-01.jpg">Wikimedia Commons</a>, CC BY-SA 4.0<br>
+ Ha Long Bay: Thomas Hirsch, <a href="https://commons.wikimedia.org/wiki/File:Halong_Bay_in_Vietnam.jpg">Wikimedia Commons</a>, CC BY-SA 3.0<br>
+ Big Buddha, Phuket: Mussi Katz, <a href="https://commons.wikimedia.org/wiki/File:Big_Buddha_-_Phuket.jpg">Wikimedia Commons</a>, CC0<br>
+ Wat Arun: Trip.with.taste, <a href="https://commons.wikimedia.org/wiki/File:Wat_Arun_on_the_sunset.jpg">Wikimedia Commons</a>, CC BY-SA 4.0
+</footer>`;
+document.getElementById("main").innerHTML = h;
+
+/* checklist memory */
+document.querySelectorAll(".check input").forEach(b=>{b.checked=localStorage.getItem(b.dataset.k)==="1";b.onchange=()=>localStorage.setItem(b.dataset.k,b.checked?"1":"0")});
+
+/* countdown / today */
+const start=new Date(2026,10,19), end=new Date(2026,11,6), now=new Date(); now.setHours(0,0,0,0);
+const cnt=document.getElementById("count");
+if(now<start){const n=Math.round((start-now)/864e5);cnt.textContent=`Leaving in ${n} day${n===1?'':'s'} · 7 of us`}
+else if(now<=end){const mo=now.toLocaleString("en-US",{month:"short"}),day=now.getDate(),wd=now.toLocaleString("en-US",{weekday:"short"});
+  const el=[...document.querySelectorAll(".day")].find(a=>a.dataset.date===`${wd} ${mo} ${day}`);
+  cnt.innerHTML="Jump to today";cnt.style.cursor="pointer";if(el){el.classList.add("today");cnt.onclick=()=>el.scrollIntoView({behavior:"smooth"})}}
+else cnt.textContent="Welcome home";
+
+/* active tab */
+const links=[...document.querySelectorAll("nav a")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));const a=links.find(a=>a.classList.contains("on"));if(a){const w=a.parentElement;w.scrollTo({left:a.offsetLeft-w.clientWidth/2+a.offsetWidth/2,behavior:"smooth"})}}}),{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("main > section").forEach(s=>io.observe(s));
+</script>
+<script>
+(function(){
+const KIDS=[
+ {id:"jamison",name:"Jamison",age:7,c:"#C0573A",lvl:0},
+ {id:"avery",name:"Avery",age:10,c:"#16798A",lvl:1},
+ {id:"emma",name:"Emma",age:12,c:"#B5852A",lvl:2}];
+const VN=[
+ ["Xin chào","sin chow","Hello"],["Cảm ơn","gahm uhn","Thank you"],
+ ["Ngon quá","ngon kwah","So yummy"],["Tạm biệt","tahm bee-et","Goodbye"]];
+const TH=[
+ ["Sawasdee","sa-wat-dee","Hello","Add “khrap” (boys) or “kha” (girls) at the end to be polite."],
+ ["Khop khun","kop koon","Thank you"],
+ ["Aroi","a-roy","Delicious"],["Mai pen rai","my pen rye","No problem"]];
+// s = short fact (Jamison), f = fact (Avery, Emma), x = extra for Emma
+const HUNT=[
+ {id:"saigon",name:"Saigon",full:"Saigon & Vung Tau",c:"var(--saigon)",hex:"#C0573A",dates:"NOV 20–24",say:VN,
+  spots:[
+   {w:"Sat Nov 21 · Notre Dame",t:"Two tall church towers made of red brick",s:"The red bricks came all the way from France!",f:"The red bricks were shipped all the way from Marseille, France, more than 140 years ago.",x:"It was finished in 1880. Look for the scaffolding: it is being repaired right now."},
+   {w:"Sat Nov 21 · Post Office",t:"A giant painted map on the wall",s:"One map shows Saigon in 1892. That is really old!",f:"There are two painted maps. One shows Saigon and the land around it in 1892.",x:"The other map shows old telegraph lines, the way people sent fast messages before phones."},
+   {w:"Sat Nov 21 · Post Office",t:"The big clock above the front doors",s:"This post office still sends mail every day.",f:"The building was finished in 1891, and you can still mail a postcard home from inside.",x:"A French architect designed it. Look up at the curved iron roof inside, like an old train station."},
+   {w:"Sun Nov 22 · Vung Tau",t:"A round basket boat on the beach",s:"Fishermen weave these round boats from bamboo.",f:"Vietnamese fishermen weave round boats called thúng chai from bamboo and paddle them out to bigger boats.",x:"Ask how they steer. Many fishermen spin them with one oar."},
+   {w:"Sun Nov 22 · Vung Tau",t:"A giant statue with open arms on the hill",s:"It is as tall as a 10-story building.",f:"The Christ the King statue is 32 meters tall, and its arms stretch 18 meters wide.",x:"There are 133 steps inside the statue that lead up to its shoulders."},
+   {w:"Mon Nov 23 · Ben Thanh",t:"The clock tower over the market gate",s:"This clock tower is a symbol of Saigon.",f:"The clock tower over the south gate of Ben Thanh Market is one of Saigon’s best-known landmarks.",x:"Count how many different kinds of fruit you can find inside."},
+   {w:"Mon Nov 23 · Landmark 81",t:"The tallest building in Vietnam",s:"It has 81 floors. Wow!",f:"Landmark 81 has 81 floors and is the tallest building in Vietnam.",x:"It is about 461 meters tall. That is more than 14 Christ the King statues stacked up."}],
+  ch:["Say “xin chào” to someone and get a smile back.",
+      "Mail a postcard from the Central Post Office to a friend at home.",
+      "Order a drink or snack yourself in Vietnamese, and say “cảm ơn” at the end."]},
+ {id:"hanoi",name:"Hanoi",full:"Hanoi & Ha Long",c:"var(--hanoi)",hex:"#2F7F68",dates:"NOV 24–29",say:VN,
+  spots:[
+   {w:"Hoan Kiem Lake",t:"The little tower on an island in the lake",s:"A magic turtle lives in the story of this lake.",f:"Hoan Kiem means “Lake of the Returned Sword.” The legend says a golden turtle took back a magic sword from King Lê Lợi.",x:"This little building is called Turtle Tower. Can you retell the legend to the grown-ups?"},
+   {w:"Hoan Kiem Lake",t:"The bright red wooden bridge",s:"The red bridge leads to a temple on an island.",f:"The red Thê Húc Bridge leads to Ngọc Sơn Temple, which sits on a small island in the lake.",x:"Its name means something like “where the morning sunlight rests.”"},
+   {w:"Old Quarter",t:"A street sign that starts with “Hàng”",s:"Hàng means things to sell.",f:"Hàng means goods. Long ago each street sold one kind of thing, like Hàng Bạc, Silver Street.",x:"Find two more Hàng streets and guess what they used to sell."},
+   {w:"Wed Nov 25 · Ha Long Bay",t:"A rock island shaped like an animal or a face",s:"Ha Long means “dragon coming down.”",f:"Ha Long means “descending dragon.” A legend says dragons dropped jewels that became these islands.",x:"There are about 1,600 islands and islets here, and Ha Long Bay is a UNESCO World Heritage site."},
+   {w:"Wed Nov 25 · Ha Long Bay",t:"A floating house or fish farm on the water",s:"Some families live and work right on the water.",f:"Some people here live, fish and farm fish in houses that float on the bay.",x:"Think about it: how would you get to school if you lived here?"},
+   {w:"Fri Nov 27 · Ninh Binh",t:"A boat rower paddling with their feet",s:"Many rowers here paddle with their feet!",f:"Many rowers in Ninh Binh row with their feet, which lets them rest their arms on long trips.",x:"Count how many caves your boat goes through."},
+   {w:"Fri Nov 27 · Ninh Binh",t:"Cliffs that look like a movie set",s:"A movie about a giant gorilla was filmed here.",f:"Parts of the 2017 movie Kong: Skull Island were filmed in Ninh Binh.",x:"Over 1,000 years ago, Hoa Lư here was Vietnam’s capital city."},
+   {w:"Sat Nov 28 · Bat Trang",t:"A spinning pottery wheel",s:"People here have made pottery for hundreds of years.",f:"Bat Trang village has been making pottery for about 700 years.",x:"Long ago, Bat Trang pottery was shipped to Japan and even to Europe."}],
+  ch:["Make something at the pottery class and give it a name.",
+      "Sketch your favorite rock island from the boat.",
+      "Learn one Vietnamese word from your boat rower or guide and teach it to the family."]},
+ {id:"phuket",name:"Phuket",full:"Phuket",c:"var(--phuket)",hex:"#16798A",dates:"NOV 29–DEC 2",say:TH,
+  spots:[
+   {w:"Mon Nov 30 · Elephants",t:"An elephant using its trunk like a hand",s:"A trunk has thousands and thousands of muscles.",f:"An elephant’s trunk has tens of thousands of muscles. It can pick up something as small as a peanut.",x:"The elephant is Thailand’s national animal."},
+   {w:"Mon Nov 30 · Elephants",t:"An elephant eating its lunch",s:"Elephants eat almost all day long!",f:"A grown elephant can eat around 150 kilograms of food in a day. That is like two grown-ups.",x:"Ask a keeper what this elephant’s favorite food is."},
+   {w:"Tue Dec 1 · Wat Chalong",t:"The brick oven where firecrackers pop",s:"People pop firecrackers to say thank you. Cover your ears!",f:"When a wish comes true, people set off firecrackers here to say thank you. They are loud, so cover your ears.",x:"Wat Chalong is the biggest and most important temple in Phuket."},
+   {w:"Tue Dec 1 · Wat Chalong",t:"The tall pagoda with many floors",s:"Climb to the top to see a treasure.",f:"Near the top of the tall pagoda is a tiny piece of the Buddha’s bone, a gift from Sri Lanka.",x:"The pagoda is about 60 meters tall. Count the floors as you climb."},
+   {w:"Tue Dec 1 · Big Buddha",t:"The giant white Buddha on the hill",s:"It is as tall as a 15-story building.",f:"Phuket’s Big Buddha is 45 meters tall and covered in white marble from Myanmar.",x:"Building it started in 2002. Remember to cover shoulders and knees."},
+   {w:"Wed Dec 2 · Snorkel",t:"A parrotfish (look for a beak-like mouth)",s:"Parrotfish help make sand!",f:"Parrotfish nibble on coral, and what comes out the other end is soft white sand.",x:"Rule of the reef: don’t touch coral or spiky sea urchins. Count every kind of fish you see."}],
+  ch:["Say “sawasdee” to someone at the hotel.",
+      "Draw the elephant you met and write its name.",
+      "Find out the elephant’s name and age from a keeper and write them down."]},
+ {id:"bangkok",name:"Bangkok",full:"Bangkok",c:"var(--bangkok)",hex:"#B5852A",dates:"DEC 2–6",say:TH,
+  spots:[
+   {w:"Thu Dec 3 · Grand Palace",t:"The Emerald Buddha, high up on its golden throne",s:"It is green, but it is not made of emerald!",f:"The Emerald Buddha is only 66 cm tall and carved from green stone, not emerald.",x:"The King changes its golden clothes three times a year, once for each season."},
+   {w:"Thu Dec 3 · Grand Palace",t:"A giant guardian standing at a temple gate",s:"Giant guards keep watch over the temple.",f:"Huge colorful giants called yaksha guard the gates of the Temple of the Emerald Buddha.",x:"Look closely: each giant has a different face color and costume."},
+   {w:"Thu Dec 3 · Wat Pho",t:"The giant golden Reclining Buddha",s:"It is almost as long as four buses!",f:"Wat Pho’s Reclining Buddha is 46 meters long and 15 meters high.",x:"It is made of brick and plaster, covered in gold."},
+   {w:"Thu Dec 3 · Wat Pho",t:"The shiny pictures on the Buddha’s feet",s:"There are 108 tiny pictures on the feet.",f:"The soles are covered in mother-of-pearl, with 108 pictures that are signs of the Buddha.",x:"Look for elephants, tigers and flowers among the 108 pictures."},
+   {w:"Thu Dec 3 · Wat Pho",t:"The row of 108 bronze bowls",s:"Drop a coin in each bowl for good luck.",f:"There are 108 bronze bowls, one for each picture on the feet. People drop in coins for good luck.",x:"The coins help the monks look after the temple."},
+   {w:"Thu Dec 3 · River cruise",t:"Wat Arun glowing at night",s:"It is decorated with bits of broken plates!",f:"Wat Arun, the Temple of Dawn, is covered in pieces of colorful Chinese porcelain and seashells.",x:"Its name comes from Aruna, the Indian god of the dawn."},
+   {w:"Thu Dec 3 · River cruise",t:"A long-tail boat zooming by",s:"Its engine sits on a long pole.",f:"Long-tail boats have a car-style engine with the propeller on a long pole that sticks out the back.",x:"The river is called the Chao Phraya, and boats have used it for hundreds of years."},
+   {w:"Sat Dec 5 · Chatuchak",t:"A stall selling something you have never seen",s:"This market has thousands and thousands of stalls.",f:"Chatuchak Weekend Market has more than 15,000 stalls. It is one of the biggest markets in the world.",x:"Take a photo of the section number so you can find your way back."}],
+  ch:["Try mango sticky rice and give it a score out of 10.",
+      "Drop a coin into all 108 bowls at Wat Pho without missing one.",
+      "Learn Bangkok’s Thai name, “Krung Thep,” and find out why its full name is famous."]}
+];
+// Emma's Bangkok challenge answer source: Guinness lists Bangkok's full ceremonial name as the world's longest place name.
+const P={spot:10,word:5,ch:25};
+const TIERS=[["Explorer",0],["Navigator",150],["Legend",300]];
+const KEY="tepHunt.v1";
+let st; try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){st={}}
+st.kid=st.kid||"jamison"; st.city=st.city||"saigon"; st.f=st.f||{};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const has=(k,id)=>!!(st.f[k]&&st.f[k][id]);
+const tog=(k,id)=>{st.f[k]=st.f[k]||{}; st.f[k][id]?delete st.f[k][id]:st.f[k][id]=1; save();};
+const ck='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="color:#fff"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const eye='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>';
+function stampSVG(c,on){const id="sp"+c.id;
+ if(!on)return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 4"/><text x="50" y="50" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="700" fill="#fff">${c.name}</text><text x="50" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="500" fill="#fff">${c.spots.length} to find</text></svg>`;
+ return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><path id="${id}" d="M50 50 m-35 0 a35 35 0 1 1 70 0 a35 35 0 1 1 -70 0"/></defs>
+ <circle cx="50" cy="50" r="46" fill="none" stroke="${c.hex}" stroke-width="3"/><circle cx="50" cy="50" r="25" fill="none" stroke="${c.hex}" stroke-width="1.5"/>
+ <text font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="1.6" fill="${c.hex}"><textPath href="#${id}" textLength="214">${c.name.toUpperCase()} · ${c.dates} ·</textPath></text>
+ <path d="M39 51l7.5 7.5L62 43" fill="none" stroke="${c.hex}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;}
+function score(k){let p=0;HUNT.forEach(c=>{c.spots.forEach((_,i)=>{if(has(k,c.id+"s"+i))p+=P.spot});if(has(k,c.id+"ch"))p+=P.ch});
+ [["vn",VN],["th",TH]].forEach(([n,a])=>a.forEach((_,i)=>{if(has(k,n+i))p+=P.word}));return p;}
+const found=(k,c)=>c.spots.filter((_,i)=>has(k,c.id+"s"+i)).length;
+const open={};
+function render(){
+ const root=document.getElementById("kids"); if(!root)return;
+ const kid=KIDS.find(x=>x.id===st.kid), k=kid.id, c=HUNT.find(x=>x.id===st.city);
+ const pts=score(k); let ti=0; TIERS.forEach((t,i)=>{if(pts>=t[1])ti=i});
+ const nxt=TIERS[ti+1], pct=nxt?Math.round((pts-TIERS[ti][1])/(nxt[1]-TIERS[ti][1])*100):100;
+ const sayKey=c.say===VN?"vn":"th";
+ root.style.setProperty("--k",c.c); root.style.setProperty("--kt",c.id==="bangkok"?"#8A6416":c.c);
+ root.innerHTML=`<div class="kicker">For Jamison, Avery & Emma</div><h2 style="margin-top:14px">Treasure Hunt</h2>
+ <div class="sub">Spot it, say it, stamp your passport. Tap a card when you find it.</div>
+ <div class="players" role="group" aria-label="Who is playing?">${KIDS.map(x=>`<button class="player" data-kid="${x.id}" aria-pressed="${x.id===k}" style="--pc:${x.c}"><span class="av">${x.name[0]}</span>${x.name}<small>${score(x.id)} pts</small></button>`).join("")}</div>
+ <div class="score"><div class="top"><div class="pts">${pts}<small>points</small></div><div class="tier"><b>${TIERS[ti][0]}</b><span>${nxt?`${nxt[1]-pts} to ${nxt[0]}`:"Top rank reached"}</span></div></div>
+  <div class="meter"><i style="width:${pct}%"></i></div>
+  <div class="stamps">${HUNT.map(h=>{const on=found(k,h)===h.spots.length;return `<div class="stamp ${on?'on':'off'}" title="${h.full}">${stampSVG(h,on)}</div>`}).join("")}</div></div>
+ <div class="cities" role="group" aria-label="Choose a city">${HUNT.map(h=>`<button class="cbtn" data-city="${h.id}" aria-pressed="${h.id===c.id}" style="--cc:${h.c}">${h.name}<span class="ct">${found(k,h)}/${h.spots.length}</span></button>`).join("")}</div>
+ <div class="hunt-h"><h3>${c.full}</h3><span>${found(k,c)} of ${c.spots.length} found</span></div>
+ <div class="lbl">Spot it · ${P.spot} points each</div>
+ ${c.spots.map((s,i)=>{const id=c.id+"s"+i,d=has(k,id),o=open[k+id];return `<div class="find ${d?'done':''} ${o?'open':''}">
+  <button class="main" data-t="${id}" aria-pressed="${d}"><span class="tick">${ck}</span><span><span class="t1" style="display:block">${s.t}</span><span class="t2" style="display:block">${s.w}</span></span><span class="plus">${d?'Found':'+'+P.spot}</span></button>
+  <button class="reveal" data-o="${id}">${eye}Reveal fact</button>
+  <div class="fact">${kid.lvl===0?s.s:s.f}${kid.lvl===2?`<span class="x">${s.x}</span>`:''}</div></div>`}).join("")}
+ <div class="lbl">Say it · ${P.word} points each</div>
+ <div class="say">${c.say.map((w,i)=>{const id=sayKey+i,d=has(k,id);return `<button class="word ${d?'done':''}" data-t="${id}" aria-pressed="${d}"><b>${w[0]}</b><span class="pr">“${w[1]}”</span><span class="mn">${w[2]}<span class="mini">${ck}</span></span></button>`}).join("")}</div>
+ ${c.say===TH?`<p class="kidnote" style="margin-top:10px">${TH[0][3]}</p>`:''}
+ <div class="lbl">${kid.name}’s challenge · ${P.ch} points</div>
+ ${(()=>{const id=c.id+"ch",d=has(k,id);return `<button class="chal ${d?'done':''}" data-t="${id}" aria-pressed="${d}"><span><span class="t2" style="display:block">${c.name} challenge</span><span class="t1">${c.ch[kid.lvl]}</span></span><span class="tick">${ck}</span></button>`})()}
+ <p class="kidnote">Ranks: Explorer, then Navigator at ${TIERS[1][1]}, then Legend at ${TIERS[2][1]}. Find every spot in a city to stamp the passport. Progress is saved on this phone only. <button class="reset" data-reset>Start ${kid.name} over</button></p>`;
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("#kids button"); if(!b)return;
+ if(b.dataset.kid)st.kid=b.dataset.kid;
+ else if(b.dataset.city)st.city=b.dataset.city;
+ else if(b.dataset.t)tog(st.kid,b.dataset.t);
+ else if(b.dataset.o)open[st.kid+b.dataset.o]=1;
+ else if(b.hasAttribute("data-reset")){if(confirm("Clear all of "+st.kid[0].toUpperCase()+st.kid.slice(1)+"’s finds?")){delete st.f[st.kid]}}
+ save(); render();
+});
+render();
+})();
+
+</script>
+</body>
+</html>
