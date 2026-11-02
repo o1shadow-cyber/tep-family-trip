@@ -74,6 +74,8 @@ nav a.on{color:var(--ink);border-color:var(--c,var(--ink))}
 .time{flex:none;width:62px;font:500 12px/1.4 var(--sans);color:var(--muted);font-variant-numeric:tabular-nums}
 .what{font:500 15px/1.4 var(--sans)}
 .pick{font:600 10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--c);padding:4px 7px;border-radius:4px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.btn.bkd{color:#2F7F68;border-color:#2F7F68;font-weight:600;padding:8px 8px 8px 5px;gap:4px}
+.btn.bkd .bk{font:700 8.5px/1 var(--sans);letter-spacing:.02em;text-transform:uppercase;color:#fff;background:#2F7F68;padding:3px 4px;margin:-3px 0;border-radius:99px}
 .pick.alt{background:transparent;color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
 .note{font-size:13px;color:var(--muted);margin:3px 0 0 74px;line-height:1.45}
 .acts{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 0 74px}
@@ -331,6 +333,7 @@ const L = {
   sealife: "https://www.visitsealife.com/bangkok/en/tickets/",
   skywalk: "https://www.kingpowermahanakhon.co.th/experience/mahanakhon-skywalk",
   chatuchak: "https://www.chatuchakmarket.org/opening-times/",
+  klook: "https://www.klook.com/bookings/",
   evisa: "https://evisa.gov.vn", tdac: "https://tdac.immigration.go.th"
 };
 const HOTEL = {
@@ -367,12 +370,14 @@ const go = (l,h) => B(l, h, "go");
 const MP = (q,id) => M(q) + (id ? "&query_place_id=" + id : "");
 const PL = (n,q) => `<a class="pl" href="${M(q)}" target="_blank" rel="noopener">${n}${I.out}</a>`;
 const eta = t => `<span class="eta">${I.clock}${t}</span>`;
+/* booked ride from the Transportation tab of the trip sheet: badge + provider, manage link */
+const booked = (prov,href,t) => `<a class="btn bkd" href="${href}" target="_blank" rel="noopener" title="Manage booking${t?" · pickup "+t:""}"><span class="bk">Booked</span>${prov}${t?" "+t:""}</a>`;
 
 /* ---------- days (from the itinerary page + sheet) ---------- */
 const CITIES = [
  {id:"saigon", n:"01", name:"Ho Chi Minh City", short:"Saigon", dates:"Nov 20 – 24 · 4 nights", img:"img/saigon.jpg", pos:"50% 60%", stays:["sherwood","fusion"], days:[
   {d:"20", wd:"Fri Nov 20", t:"Arrive late", items:[
-    {time:"10:25 PM", what:"Land at SGN on KE475", note:"Straight to Sherwood Suites and bed.", acts:[grab("Airport ride"), map("Sherwood Suites Ho Chi Minh City","Hotel")]}]},
+    {time:"10:25 PM", what:"Land at SGN on KE475", note:"Straight to Sherwood Suites and bed.", acts:[booked("Klook",L.klook), map("Sherwood Suites Ho Chi Minh City","Hotel")]}]},
   {d:"21", wd:"Sat Nov 21", t:"District 1 on foot", items:[
     {time:"Day", what:"Move to Fusion Original Saigon Centre", acts:[grab()]},
     {time:"3:30 PM", what:"Notre Dame Cathedral", note:"Outside only, under restoration.", acts:[map("Notre Dame Cathedral Saigon")], eta:"Walk 10–15 min"},
@@ -394,12 +399,12 @@ const CITIES = [
   {opt:true, d:"Maybe", wd:"Optional", t:"Cu Chi Tunnels", items:[
     {time:"", what:"Hot and tight, hard for the grandparents. Probably skipping.", acts:[map("Cu Chi Tunnels")], eta:"1.5–2 hr each way"}]},
   {d:"24", wd:"Tue Nov 24", t:"Fly north", items:[
-    {time:"Noon", what:"Check out, ride to the airport", acts:[grab("Airport ride")]},
+    {time:"Noon", what:"Check out, ride to the airport", acts:[booked("Klook",L.klook)]},
     {time:"3:00 PM", what:"VJ152 to Hanoi", acts:[go("Check in",L.vjCheck)]}]}
  ]},
  {id:"hanoi", n:"02", name:"Hanoi & Ha Long Bay", short:"Hanoi", dates:"Nov 24 – 29 · 5 nights", img:"img/halong.jpg", pos:"50% 50%", stays:["tirant","cruise"], days:[
   {d:"24", wd:"Tue Nov 24", t:"Arrive, early night", items:[
-    {time:"5:10 PM", what:"Land in Hanoi", acts:[grab("Hotel ride"), map("Tirant Hotel Hanoi","Hotel")]},
+    {time:"5:10 PM", what:"Land in Hanoi", acts:[booked("Klook",L.klook), map("Tirant Hotel Hanoi","Hotel")]},
     {time:"Evening", what:"Easy dinner near the hotel", note:"Ha Long pickup is 8 AM.", eta:"Walk 0–10 min"}]},
   {d:"25", wd:"Wed Nov 25", t:"A night on Ha Long Bay", items:[
     {time:"8 AM", what:"Van pickup to the bay", acts:[go("Cruise & transfer",L.cruise)], eta:"About 2.5 hr"},
@@ -411,12 +416,12 @@ const CITIES = [
   {d:"28", wd:"Sat Nov 28", t:"Bat Trang pottery", items:[
     {time:"8:30 AM", what:"Pottery village, kids’ class", note:"Back by lunch.", acts:[grab(), map("Bat Trang Pottery Village")], eta:"Grab 20–30 min"}]},
   {d:"29", wd:"Sun Nov 29", t:"To Thailand", items:[
-    {time:"8:45 AM", what:"Leave for the airport", acts:[grab("Airport ride")]},
+    {time:"8:45 AM", what:"Leave for the airport", acts:[booked("Klook",L.klook)]},
     {time:"12:20 PM", what:"FD641 to Bangkok, then on to Phuket", acts:[go("Check in",L.aaCheck)]}]}
  ]},
  {id:"phuket", n:"03", name:"Phuket", short:"Phuket", dates:"Nov 29 – Dec 2 · 3 nights", img:"img/phuket.jpg", pos:"30% 40%", stays:["merlin"], days:[
   {d:"29", wd:"Sun Nov 29", t:"Arrive at the Merlin", items:[
-    {time:"5:35 PM", what:"Land in Phuket", acts:[grab("Hotel ride"), map("Phuket Marriott Resort Merlin Beach","Hotel")]},
+    {time:"5:35 PM", what:"Land in Phuket", acts:[booked("Klook",L.klook), map("Phuket Marriott Resort Merlin Beach","Hotel")]},
     {time:"7 PM", what:"Dinner at the resort"}]},
   {d:"30", wd:"Mon Nov 30", t:"Elephants and Carnival Magic", items:[
     {time:"8:15 AM", what:"Elephant sanctuary, 9:30 AM start", note:"Meeting point in Paklok. Arrive 15 min early.", acts:[map("Paklok Phuket","Meeting point")], eta:"Car 55–70 min"},
@@ -432,7 +437,7 @@ const CITIES = [
     {time:"", what:"Phi Phi catamaran", acts:[site("Tour",L.phiphi)], eta:"About 9 hr"}]},
   {d:"2", wd:"Wed Dec 2", t:"Reef, then Bangkok", items:[
     {time:"Morning", what:"Snorkel the house reef", note:"Free gear. High tide only."},
-    {time:"3:25 PM", what:"VZ2301 to Bangkok", acts:[grab("Airport ride"), go("Check in",L.vjCheck)]}]}
+    {time:"12:30 PM", what:"VZ2301 at 3:25 PM", acts:[booked("Klook",L.klook), go("Check in",L.vjCheck)]}]}
  ]},
  {id:"bangkok", n:"04", name:"Bangkok", short:"Bangkok", dates:"Dec 2 – 6 · 4 nights", img:"img/bangkok.jpg", pos:"45% 60%", stays:["dt"], days:[
   {d:"2", wd:"Wed Dec 2", t:"Arrive", items:[
