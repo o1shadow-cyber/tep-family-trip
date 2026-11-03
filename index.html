@@ -317,19 +317,20 @@ const L = {
   nightBus: "https://city-sightseeing.com/en/156/saigon/3914/saigon-night-tour",
   nguyenHue: "https://share.google/2Z4HLTGNPFPjuiUNG",
   ninhBinh: "https://youtube.com/shorts/9vGAc1ps7i8?si=ujgvbCgSFobPPeMG",
-  carnival: "https://carnivalmagic.fun/booking/",
-  fantasea: "https://www.phuket-fantasea.com/eng/information/faqs_tickets.php",
-  bigBuddha: "https://www.visit-thailand.org/cities/24-phuket/phuket-big-buddha",
-  oldTown: "https://thaipedia.asia/en/travel/phuket/sights/phuket-sunday-market/",
-  hong: "https://johngray-seacanoe.com/tour/hong-by-starlight/",
-  phiphi: "https://lovephukettours.com/phi-phi-island-tour-luxury-catamaran",
+  andamanda: "https://www.andamandaphuket.com/",
+  hanuman: "https://hanumanworldphuket.com/packages/zipline",
+  floresta: "https://www.centralphuket.com/en",
+  aquaria: "https://www.aquaria-phuket.com/",
+  jungceylon: "https://www.jungceylon.com/en",
+  centralworld: "https://www.centralworld.co.th/en",
+  embassy: "https://www.centralembassy.com/",
   palace: "https://www.royalgrandpalace.th/en/home",
-  watPho: "https://www.watpho.com",
-  watArun: "https://www.tourismthailand.org/Attraction/phraprang-wat-arun-ratchawararam-ratchawora-mahawi",
-  pearl: "https://www.orientavista.com/en/wonderful-pearl-dinner-cruise/",
-  princess: "https://www.chaophrayaprincess.com/",
-  safari: "https://safariworld.com/showtime/",
-  jim: "https://jimthompsonhouse.org/visitor-information/",
+  iconsiam: "https://www.iconsiam.com/en",
+  sooksiam: "https://www.iconsiam.com/en/attraction/sooksiam",
+  kidzania: "https://kidzania.com/bangkok",
+  siamDisc: "https://www.siamdiscovery.co.th/en",
+  emq: "https://www.emquartier.co.th/",
+  emporium: "https://www.emporium.co.th/",
   sealife: "https://www.visitsealife.com/bangkok/en/tickets/",
   skywalk: "https://www.kingpowermahanakhon.co.th/experience/mahanakhon-skywalk",
   chatuchak: "https://www.chatuchakmarket.org/opening-times/",
@@ -422,39 +423,38 @@ const CITIES = [
  {id:"phuket", n:"03", name:"Phuket", short:"Phuket", dates:"Nov 29 – Dec 2 · 3 nights", img:"img/phuket.jpg", pos:"30% 40%", stays:["merlin"], days:[
   {d:"29", wd:"Sun Nov 29", t:"Arrive at the Merlin", items:[
     {time:"5:35 PM", what:"Land in Phuket", acts:[booked("Klook",L.klook), map("Phuket Marriott Resort Merlin Beach","Hotel")]},
-    {time:"7 PM", what:"Dinner at the resort"}]},
-  {d:"30", wd:"Mon Nov 30", t:"Elephants and Carnival Magic", items:[
-    {time:"8:15 AM", what:"Elephant sanctuary, 9:30 AM start", note:"Meeting point in Paklok. Arrive 15 min early.", acts:[map("Paklok Phuket","Meeting point")], eta:"Car 55–70 min"},
-    {time:"7 PM", what:"Carnival Magic", pick:"Our show", note:"Book the ride back; Grab is scarce after 10 PM.", acts:[go("Tickets",L.carnival), grab(), map("Carnival Magic Kamala Phuket")], eta:"Car 25–35 min"}]},
-  {d:"1", wd:"Tue Dec 1", t:"Temples, then the pool", items:[
-    {time:"7–9 AM", what:"Wat Chalong", acts:[grab(), map("Wat Chalong Phuket")], eta:"Car 25–35 min"},
-    {time:"Morning", what:"Big Buddha", note:"Cover shoulders and knees.", acts:[site("Info",L.bigBuddha), map("Big Buddha Phuket")], eta:"15 min on"},
-    {time:"Lunch", what:"Old Phuket Town", acts:[site("Info",L.oldTown), map("Old Phuket Town")]},
-    {time:"Afternoon", what:"Pool time at the resort"},
-    {time:"Backup", what:"Phuket FantaSea", pick:"Backup", alt:true, acts:[site("Tickets",L.fantasea)]}]},
-  {opt:true, d:"Maybe", wd:"Optional", t:"Long days, probably skip", items:[
-    {time:"", what:"Hong by Starlight sea canoe", acts:[site("Tour",L.hong)], eta:"About 10 hr"},
-    {time:"", what:"Phi Phi catamaran", acts:[site("Tour",L.phiphi)], eta:"About 9 hr"}]},
+    {time:"7 PM", what:"Easy night, dinner at the resort"}]},
+  {d:"30", wd:"Mon Nov 30", t:"Water park, then the pool", items:[
+    {time:"10 AM", what:"Andamanda water park, until about 2:30 PM", acts:[site("Official site",L.andamanda), grab(), map("Andamanda Phuket")], eta:"Car 30–40 min"},
+    {time:"Afternoon", what:"Pool time at the resort", acts:[grab("Ride back")]},
+    {time:"Alt", what:"Hanuman World zipline", pick:"Alternative", alt:true, note:"Ages 4 and up. About 3.5–4 hr.", acts:[site("Official site",L.hanuman), grab(), map("Hanuman World Phuket")], eta:"Car 35–45 min"}]},
+  {d:"1", wd:"Tue Dec 1", t:"Big Buddha and Aquaria", items:[
+    {time:"8:30 AM", what:"Big Buddha", note:"Our one temple stop in Phuket. Cover shoulders and knees.", acts:[grab(), map("Big Buddha Phuket")], eta:"Car 30–40 min"},
+    {time:"Late AM", what:"Central Phuket Floresta: Aquaria Phuket and lunch", acts:[site("Aquaria",L.aquaria), site("Mall",L.floresta), grab(), map("Aquaria Phuket Central Phuket Floresta")], eta:"Car 25–35 min"},
+    {time:"3 PM", what:"Back at the resort", acts:[grab("Ride back")], eta:"Car 35–45 min"},
+    {time:"Evening", what:"Jungceylon mall, Patong", pick:"Optional", alt:true, acts:[site("Mall",L.jungceylon), grab(), map("Jungceylon Shopping Center Patong")], eta:"Car 15–25 min"}]},
   {d:"2", wd:"Wed Dec 2", t:"Reef, then Bangkok", items:[
-    {time:"Morning", what:"Snorkel the house reef", note:"Free gear. High tide only."},
-    {time:"12:30 PM", what:"VZ2301 at 3:25 PM", acts:[booked("Klook",L.klook), go("Check in",L.vjCheck)]}]}
+    {time:"Morning", what:"House reef and pool", note:"Free snorkel gear. High tide only."},
+    {time:"12:30 PM", what:"Pickup for VZ2301 at 3:25 PM", note:"Leave by 12:45 PM.", acts:[booked("Klook",L.klook,"12:30 PM"), go("Check in",L.vjCheck)]}]}
  ]},
  {id:"bangkok", n:"04", name:"Bangkok", short:"Bangkok", dates:"Dec 2 – 6 · 4 nights", img:"img/bangkok.jpg", pos:"45% 60%", stays:["dt"], days:[
   {d:"2", wd:"Wed Dec 2", t:"Arrive", items:[
-    {time:"4:55 PM", what:"Land, check in at the DoubleTree", acts:[grab("Hotel ride"), map("DoubleTree by Hilton Bangkok Ploenchit","Hotel")]}]},
-  {d:"3", wd:"Thu Dec 3", t:"Temples and the river", items:[
-    {time:"8:30 AM", what:"Grand Palace & Wat Phra Kaew", note:"Tell the driver “Mani Noppharat Gate”.", acts:[grab(), site("Official site",L.palace)], eta:"Car 30–50 min"},
-    {time:"Late AM", what:"Wat Pho, Reclining Buddha", acts:[site("Official site",L.watPho), map("Wat Pho Bangkok")], eta:"Next door"},
-    {time:"Midday", what:"Break at the hotel"},
-    {time:"Evening", what:"River dinner cruise, Wat Arun lit up", note:"Check the pier on the ticket; arrive 30 min early.", acts:[go("Wonderful Pearl",L.pearl), site("Chao Phraya Princess",L.princess), site("Wat Arun",L.watArun), grab()], eta:"Car 25–45 min"}]},
-  {d:"4", wd:"Fri Dec 4", t:"David’s pick", items:[
-    {time:"Option C", what:"Jim Thompson House, SEA LIFE, SkyWalk", pick:"Recommended", acts:[site("Jim Thompson",L.jim), site("SEA LIFE",L.sealife), site("SkyWalk",L.skywalk)], eta:"BTS or Grab"},
-    {time:"Option B", what:"Safari World, full day", pick:"Good alternative", alt:true, acts:[site("Safari World",L.safari), grab()], eta:"Car 45–60 min"},
-    {time:"Option A", what:"Floating market, 7 AM start", acts:[map("Damnoen Saduak Floating Market")], eta:"Car 1.5–2 hr"}]},
-  {d:"5", wd:"Sat Dec 5", t:"Father’s Day holiday", items:[
-    {time:"9 AM", what:"Chatuchak Weekend Market", acts:[site("Hours",L.chatuchak), map("Chatuchak Weekend Market")], eta:"BTS to Mo Chit"},
-    {time:"Late AM", what:"Children’s Discovery Museum", note:"Call ahead.", acts:[map("Children's Discovery Museum Bangkok Chatuchak")], eta:"Walk 5 min"},
-    {time:"5–6 PM", what:"Chinatown, Yaowarat Road", acts:[grab(), map("Yaowarat Road Bangkok")], eta:"MRT to Wat Mangkon"}]},
+    {time:"4:55 PM", what:"Land, check in at the DoubleTree", acts:[grab("Hotel ride"), map("DoubleTree by Hilton Bangkok Ploenchit","Hotel")]},
+    {time:"7 PM", what:"Dinner at CentralWorld", note:"Short walk on the skywalk.", acts:[site("Official site",L.centralworld), map("centralwOrld Bangkok")], eta:"Walk"},
+    {time:"Or", what:"Dinner at Central Embassy", alt:true, acts:[site("Official site",L.embassy), map("Central Embassy Bangkok")], eta:"Walk"}]},
+  {d:"3", wd:"Thu Dec 3", t:"Grand Palace and the river", items:[
+    {time:"8:30 AM", what:"Grand Palace & Wat Phra Kaew", note:"Our one historic stop in Bangkok. Tell the driver “Mani Noppharat Gate”.", acts:[grab(), site("Official site",L.palace), map("The Grand Palace Bangkok")], eta:"Car 30–50 min"},
+    {time:"Midday", what:"Break at the hotel", acts:[grab("Ride back")]},
+    {time:"4:30 PM", what:"ICONSIAM and the SookSiam indoor floating market", acts:[site("ICONSIAM",L.iconsiam), site("SookSiam",L.sooksiam), grab(), map("ICONSIAM Bangkok")], eta:"Car 30–45 min"},
+    {time:"Evening", what:"Dinner cruise from the ICONSIAM pier", note:"Wat Arun lit up from the boat. Check the pier on the ticket; arrive 30 min early.", acts:[map("ICONSIAM Pier Bangkok","Pier")], eta:"Walk"}]},
+  {d:"4", wd:"Fri Dec 4", t:"Pick one: A, B or C", items:[
+    {time:"Option A", what:"KidZania at Siam Paragon", note:"Role-play city for ages 4–14. An adult stays inside with Jamison.", acts:[site("KidZania",L.kidzania), grab(), map("KidZania Bangkok Siam Paragon")], eta:"BTS to Siam, 2 stops"},
+    {time:"Option B", what:"SEA LIFE Ocean World and shopping", note:"Shop at Siam Discovery or CentralWorld.", acts:[site("SEA LIFE",L.sealife), site("Siam Discovery",L.siamDisc), grab(), map("SEA LIFE Bangkok Ocean World")], eta:"BTS to Siam, 2 stops"},
+    {time:"Option C", what:"EmQuartier and Emporium malls", acts:[site("EmQuartier",L.emq), site("Emporium",L.emporium), grab(), map("EmQuartier Bangkok")], eta:"BTS to Phrom Phong, 3 stops"},
+    {time:"Sunset", what:"Any option: Mahanakhon SkyWalk glass floor", pick:"Add-on", alt:true, acts:[site("SkyWalk",L.skywalk), grab(), map("Mahanakhon SkyWalk Bangkok")], eta:"BTS to Chong Nonsi"}]},
+  {d:"5", wd:"Sat Dec 5", t:"Chatuchak and Chinatown", items:[
+    {time:"9 AM", what:"Chatuchak Weekend Market", acts:[site("Hours",L.chatuchak), grab(), map("Chatuchak Weekend Market")], eta:"BTS to Mo Chit"},
+    {time:"5–6 PM", what:"Chinatown street food, Yaowarat Road", acts:[grab(), map("Yaowarat Road Bangkok")], eta:"MRT to Wat Mangkon"}]},
   {d:"6", wd:"Sun Dec 6", t:"Home", items:[
     {time:"10:15 AM", what:"Leave for the airport", acts:[grab("Airport ride")]},
     {time:"1:45 PM", what:"JX742 to Taipei, home 6:33 PM", acts:[go("Check in",L.jxCheck)]}]}
@@ -594,27 +594,28 @@ const HUNT=[
       "Learn one Vietnamese word from your boat rower or guide and teach it to the family."]},
  {id:"phuket",name:"Phuket",full:"Phuket",c:"var(--phuket)",hex:"#16798A",dates:"NOV 29–DEC 2",say:TH,
   spots:[
-   {w:"Mon Nov 30 · Elephants",t:"An elephant using its trunk like a hand",s:"A trunk has thousands and thousands of muscles.",f:"An elephant’s trunk has tens of thousands of muscles. It can pick up something as small as a peanut.",x:"The elephant is Thailand’s national animal."},
-   {w:"Mon Nov 30 · Elephants",t:"An elephant eating its lunch",s:"Elephants eat almost all day long!",f:"A grown elephant can eat around 150 kilograms of food in a day. That is like two grown-ups.",x:"Ask a keeper what this elephant’s favorite food is."},
-   {w:"Tue Dec 1 · Wat Chalong",t:"The brick oven where firecrackers pop",s:"People pop firecrackers to say thank you. Cover your ears!",f:"When a wish comes true, people set off firecrackers here to say thank you. They are loud, so cover your ears.",x:"Wat Chalong is the biggest and most important temple in Phuket."},
-   {w:"Tue Dec 1 · Wat Chalong",t:"The tall pagoda with many floors",s:"Climb to the top to see a treasure.",f:"Near the top of the tall pagoda is a tiny piece of the Buddha’s bone, a gift from Sri Lanka.",x:"The pagoda is about 60 meters tall. Count the floors as you climb."},
-   {w:"Tue Dec 1 · Big Buddha",t:"The giant white Buddha on the hill",s:"It is as tall as a 15-story building.",f:"Phuket’s Big Buddha is 45 meters tall and covered in white marble from Myanmar.",x:"Building it started in 2002. Remember to cover shoulders and knees."},
+   {w:"Mon Nov 30 · Andamanda",t:"A water slide or pool themed on a Thai legend",s:"This water park is full of Thai myths and legends.",f:"Andamanda is a water park themed on Thai legends and the hidden treasures of the Andaman Sea.",x:"The park covers about 100,000 square meters. That is about 14 soccer fields."},
+   {w:"Mon Nov 30 · Andamanda",t:"A pool with a see-through edge",s:"One pool has a clear, see-through side!",f:"The park says its Sand Bar pool was the first in Southeast Asia with a clear acrylic edge.",x:"Acrylic is a strong, clear plastic. Big aquariums use it too."},
+   {w:"Tue Dec 1 · Big Buddha",t:"The giant white Buddha on the hill",s:"It is as tall as a 15-story building.",f:"Phuket’s Big Buddha is 45 meters tall and covered in white marble from Myanmar.",x:"It sits on top of Nakkerd Hill. Remember to cover shoulders and knees."},
+   {w:"Tue Dec 1 · Big Buddha",t:"The shiny white stone up close",s:"The white stone is as heavy as lots of trucks!",f:"The white jade marble on the Big Buddha weighs about 135 tonnes.",x:"Its full name is Phra Phuttha Ming Mongkol Eknakakiri. Can you say it?"},
+   {w:"Tue Dec 1 · Aquaria",t:"A creature from a river, not the sea",s:"About 6,000 animals live here!",f:"Aquaria Phuket says it is the biggest aquarium in Thailand, with about 6,000 sea and river animals.",x:"Find one ocean creature and one river creature, and tell the family how they are different."},
    {w:"Wed Dec 2 · Snorkel",t:"A parrotfish (look for a beak-like mouth)",s:"Parrotfish help make sand!",f:"Parrotfish nibble on coral, and what comes out the other end is soft white sand.",x:"Rule of the reef: don’t touch coral or spiky sea urchins. Count every kind of fish you see."}],
   ch:["Say “sawasdee” to someone at the hotel.",
-      "Draw the elephant you met and write its name.",
-      "Find out the elephant’s name and age from a keeper and write them down."]},
+      "Draw the Big Buddha and the view from the top of the hill.",
+      "At Aquaria, list every kind of animal you can name and circle your favorite."]},
  {id:"bangkok",name:"Bangkok",full:"Bangkok",c:"var(--bangkok)",hex:"#B5852A",dates:"DEC 2–6",say:TH,
   spots:[
    {w:"Thu Dec 3 · Grand Palace",t:"The Emerald Buddha, high up on its golden throne",s:"It is green, but it is not made of emerald!",f:"The Emerald Buddha is only 66 cm tall and carved from green stone, not emerald.",x:"The King changes its golden clothes three times a year, once for each season."},
    {w:"Thu Dec 3 · Grand Palace",t:"A giant guardian standing at a temple gate",s:"Giant guards keep watch over the temple.",f:"Huge colorful giants called yaksha guard the gates of the Temple of the Emerald Buddha.",x:"Look closely: each giant has a different face color and costume."},
-   {w:"Thu Dec 3 · Wat Pho",t:"The giant golden Reclining Buddha",s:"It is almost as long as four buses!",f:"Wat Pho’s Reclining Buddha is 46 meters long and 15 meters high.",x:"It is made of brick and plaster, covered in gold."},
-   {w:"Thu Dec 3 · Wat Pho",t:"The shiny pictures on the Buddha’s feet",s:"There are 108 tiny pictures on the feet.",f:"The soles are covered in mother-of-pearl, with 108 pictures that are signs of the Buddha.",x:"Look for elephants, tigers and flowers among the 108 pictures."},
-   {w:"Thu Dec 3 · Wat Pho",t:"The row of 108 bronze bowls",s:"Drop a coin in each bowl for good luck.",f:"There are 108 bronze bowls, one for each picture on the feet. People drop in coins for good luck.",x:"The coins help the monks look after the temple."},
-   {w:"Thu Dec 3 · River cruise",t:"Wat Arun glowing at night",s:"It is decorated with bits of broken plates!",f:"Wat Arun, the Temple of Dawn, is covered in pieces of colorful Chinese porcelain and seashells.",x:"Its name comes from Aruna, the Indian god of the dawn."},
+   {w:"Thu Dec 3 · SookSiam",t:"A boat selling food inside the mall",s:"This floating market is indoors, with air-conditioning!",f:"SookSiam brings food and crafts from all 77 provinces of Thailand under one roof, with snacks sold from boats.",x:"Thailand has 77 provinces. Ask which one your snack comes from."},
+   {w:"Thu Dec 3 · ICONSIAM",t:"The tallest building in Thailand",s:"The tallest building in Thailand is right here!",f:"The Magnolias Waterfront Residences tower at ICONSIAM is about 317 meters tall, the tallest building in Thailand.",x:"The SkyWalk glass floor is at 310 meters. Which one is taller?"},
+   {w:"Thu Dec 3 · River cruise",t:"Wat Arun glowing at night",s:"It is decorated with bits of broken plates!",f:"Wat Arun, the Temple of Dawn, is covered in pieces of colorful Chinese porcelain and seashells.",x:"Its name comes from Aruna, the Hindu god who drives the sun god’s chariot."},
    {w:"Thu Dec 3 · River cruise",t:"A long-tail boat zooming by",s:"Its engine sits on a long pole.",f:"Long-tail boats have a car-style engine with the propeller on a long pole that sticks out the back.",x:"The river is called the Chao Phraya, and boats have used it for hundreds of years."},
-   {w:"Sat Dec 5 · Chatuchak",t:"A stall selling something you have never seen",s:"This market has thousands and thousands of stalls.",f:"Chatuchak Weekend Market has more than 15,000 stalls. It is one of the biggest markets in the world.",x:"Take a photo of the section number so you can find your way back."}],
+   {w:"Fri Dec 4 · SkyWalk",t:"The glass floor high above the city",s:"You can stand on glass way up in the sky!",f:"The SkyWalk glass floor is 310 meters above the ground. The very top is 314 meters.",x:"The elevator reaches the 74th floor in less than 50 seconds. Time it yourself."},
+   {w:"Sat Dec 5 · Chatuchak",t:"A stall selling something you have never seen",s:"This market has thousands and thousands of stalls.",f:"Chatuchak Weekend Market has more than 15,000 stalls. It is one of the biggest markets in the world.",x:"Take a photo of the section number so you can find your way back."},
+   {w:"Sat Dec 5 · Chinatown",t:"A gold shop with a bright red sign",s:"This street has lots and lots of gold shops.",f:"Yaowarat Road, the heart of Bangkok’s Chinatown, is nicknamed the “Golden Road” for its many gold shops.",x:"The road is about 1.5 km long and took 8 years to build (1892–1900). Some say it curves like a dragon."}],
   ch:["Try mango sticky rice and give it a score out of 10.",
-      "Drop a coin into all 108 bowls at Wat Pho without missing one.",
+      "At SookSiam, buy a snack and find out which of Thailand’s 77 provinces it comes from.",
       "Learn Bangkok’s Thai name, “Krung Thep,” and find out why its full name is famous."]}
 ];
 // Emma's Bangkok challenge answer source: Guinness lists Bangkok's full ceremonial name as the world's longest place name.
