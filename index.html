@@ -262,6 +262,41 @@ footer a{text-decoration:underline;text-underline-offset:2px}
 .items li.trk:first-child{padding-top:4px}
 .trk span{display:inline-block;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--c);padding:6px 9px;border-radius:99px}
 .trk span.b{background:transparent;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
+/* FOOD CARDS */
+#food .fd-tabs{position:sticky;top:52px;z-index:9;display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;margin:16px 0 4px;padding:2px 0;background:rgba(250,247,242,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+#food .fd-tabs::-webkit-scrollbar{display:none}
+#food .fd-tab{flex:none;display:flex;align-items:center;min-height:44px;font:500 13px/1 var(--sans);color:var(--muted);border-bottom:2px solid transparent}
+#food .fd-tab.on{color:var(--ink);border-color:var(--c,var(--ink))}
+#food .fd-city{padding-top:22px;scroll-margin-top:108px}
+#food .fd-cityhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px}
+#food .fd-cityhead strong{font:400 28px/1 var(--serif);letter-spacing:-.02em}
+#food .fd-cityhead span{font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+#food .fd-group{margin-top:22px}
+#food .fd-group:first-of-type{margin-top:8px}
+#food .fd-kicker h3{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+#food .fd-kicker h3::before{content:"";display:block;width:22px;height:2px;border-radius:2px;background:var(--c);margin-bottom:8px}
+#food .fd-kicker p{margin-top:4px;font:400 13px/1.35 var(--serif);color:#6F675E}
+#food .fd-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+#food .fd-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px 0}
+#food .fd-hit{display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer;color:inherit;font:inherit}
+#food .fd-name{display:block;font:500 18px/1.2 var(--serif);letter-spacing:-.01em}
+#food .fd-meta{display:block;margin-top:4px;font:500 12px/1.35 var(--sans);color:var(--muted)}
+#food .fd-meta i{font-style:normal;color:#C4A15A}
+#food .fd-note{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-top:5px;font:400 13px/1.4 var(--sans);color:#6F675E}
+#food .fd-card.open .fd-note{display:block;-webkit-line-clamp:unset;overflow:visible}
+#food .fd-extra{display:none;margin-top:6px;font:400 12.5px/1.4 var(--sans);color:var(--muted)}
+#food .fd-card.open .fd-extra{display:block}
+#food .fd-tag{display:inline-block;margin-right:6px;font:600 9px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:99px;padding:3px 6px;vertical-align:1px}
+#food .fd-acts{display:flex;flex-wrap:wrap;align-items:center;margin:0 0 0 -2px}
+#food .fd-btn{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px 6px 2px;background:none;border:0;text-decoration:none}
+#food .fd-btn span{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border:1px solid #E4DCD2;border-radius:99px;background:#FBF9F6;font:500 12px/1 var(--sans);color:var(--ink)}
+#food .fd-btn svg{width:12px;height:12px;color:var(--c)}
+#food .fd-btn:focus-visible span,#food .fd-hit:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+#food .fd-foot{margin-top:8px;font:400 12.5px/1.4 var(--serif);color:var(--muted)}
+@media (min-width:800px){
+  #food .fd-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+  #food .fd-foot{grid-column:1 / -1;margin-top:0}
+}
 </style>
 </head>
 <body>
@@ -303,6 +338,7 @@ footer a{text-decoration:underline;text-underline-offset:2px}
 <main id="main"></main>
 
 <script src="food.js"></script>
+<script src="food-ui.js"></script>
 <script>
 /* ---------- links (each checked to load) ---------- */
 const M = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
@@ -537,11 +573,7 @@ h += `<section class="sec wrap wide" id="flights"><div style="max-width:672px"><
 </section>`;
 h += `<section class="sec wrap" id="stays"><div class="kicker">Where we sleep</div><h2 style="margin-top:14px">Stays</h2>
  <div class="hotels">${Object.values(HOTEL).map(s=>`<div class="hotel" style="--c:${col(s.city)}"><div class="sw"></div><div><strong>${s.name}</strong><div class="when">${s.when}</div><div class="acts">${B("Map",s.map,"map")}${site("Website",s.site)}</div></div></div>`).join("")}</div></section>`;
-h += `<section class="sec wrap" id="food"><div class="kicker">Eat nearby</div><h2 style="margin-top:14px">Food</h2>
- <div class="sub">Walking distance from each hotel. Only places rated 4.6+ on Google, checked Nov 2026.</div>
- ${FOOD.map(g=>`<div class="fgroup" id="food-${g.city}" style="--c:${col(g.city)}"><div class="fhead"><strong>${g.label}</strong><span>${g.dates}</span></div>
-  ${g.hotels.map(hh=>`<div class="fhotel">${hh.label||("From "+HOTEL[hh.h].name)}</div>${hh.p.map(x=>`<div class="place"><div class="pt">${(x.map||x.q||x.d)?`<a class="pl" href="${x.map||MP(x.q||x.d,x.id)}" target="_blank" rel="noopener">${x.n}${I.out}</a>`:`<b>${x.n}</b>`}${x.w?`<span class="walk">${x.w}</span>`:''}</div><div class="cu">${x.t?`<span class="tag">${x.t}</span>`:''}${x.c||""}</div>${x.y?`<div class="why">${x.y}</div>`:""}${x.r?`<div class="gr"><i>★</i>Google ${x.r}${x.k?` · ${x.k} reviews`:''} · Nov 2026</div>`:""}${(x.map||x.d||x.res)?`<div class="acts">${(x.map||x.d)?B(x.act||(x.map?"Map":"Walk there"),x.map||WALK(hh.h,x.d),"map"):""}${x.res?go("Reserve",x.res):""}</div>`:""}</div>`).join("")}${hh.note?`<p class="fnote">${hh.note}</p>`:''}`).join("")}</div>`).join("")}
-</section>`;
+h += renderFood();
 h += `<section class="sec wrap" id="kids"></section>`;
 h += `<section class="sec wrap" id="photos"><div class="kicker">Share</div><h2 style="margin-top:14px">Our Photos</h2>
  <div class="ph-hero"><div class="strip"><i style="background:var(--saigon)"></i><i style="background:var(--hanoi)"></i><i style="background:var(--phuket)"></i><i style="background:var(--bangkok)"></i></div>
@@ -559,6 +591,7 @@ h += `<footer class="wrap"><h4>Photo credits</h4>
  Wat Arun: Trip.with.taste, <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Wat_Arun_on_the_sunset.jpg">Wikimedia Commons</a>, CC BY-SA 4.0
 </footer>`;
 document.getElementById("main").innerHTML = h;
+bindFood();
 
 /* checklist memory */
 document.querySelectorAll(".check input").forEach(b=>{b.checked=localStorage.getItem(b.dataset.k)==="1";b.onchange=()=>localStorage.setItem(b.dataset.k,b.checked?"1":"0")});
