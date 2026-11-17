@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vietnam and Thailand Trip 2026</title>
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF7F2; --ink:#1D1A17; --muted:#8C8379; --line:#E9E2D8; --card:#FFFFFF;
+  --saigon:#C0573A; --hanoi:#2F7F68; --phuket:#16798A; --bangkok:#B5852A;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:58px}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.hero{padding:36px 0 8px}
+.kicker{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font:300 40px/1.05 var(--serif);letter-spacing:-.02em;margin:14px 0 0}
+.sub{color:var(--muted);margin-top:12px;font-size:14px;max-width:40em}
+.sub a{text-decoration:underline;text-underline-offset:2px}
+nav{position:sticky;top:0;z-index:10;background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;padding-top:0;padding-bottom:0}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:none;font:500 13px/1 var(--sans);color:var(--muted);padding:16px 0 14px;border-bottom:2px solid transparent}
+nav a.on{color:var(--ink);border-color:var(--c,var(--ink))}
+.city{padding:36px 0 8px;scroll-margin-top:58px}
+.fhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--c)}
+.fhead strong{font:400 28px/1.1 var(--serif)}
+.fhead span{font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--c);white-space:nowrap}
+.group{margin-top:22px}
+.glabel{font:600 10px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.origin{font-size:12px;color:var(--muted);margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.tile{background:var(--card);border-radius:16px;box-shadow:0 1px 0 var(--line),0 10px 30px -18px rgba(40,30,20,.25);padding:12px 10px 10px;display:flex;flex-direction:column;min-width:0;border-top:3px solid var(--c)}
+.tile .g{font:600 9px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.tile h3{font:500 15px/1.25 var(--sans);margin-top:4px;overflow-wrap:anywhere}
+.tag{display:inline-block;font:600 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:99px;padding:3px 6px;margin-top:6px;align-self:flex-start}
+.cu{font-size:12px;color:var(--muted);margin-top:4px}
+.why{font-size:13px;line-height:1.4;margin-top:6px}
+.gr{display:inline-flex;align-items:center;gap:4px;font:500 11px/1.3 var(--sans);color:var(--muted);margin-top:8px}
+.gr i{font-style:normal;color:#E0A100}
+.chip{display:inline-flex;align-self:flex-start;margin-top:8px;font:500 11px/1 var(--sans);color:var(--c);border:1px solid var(--c);border-radius:99px;padding:4px 7px}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:10px}
+.btn{display:inline-flex;align-items:center;gap:4px;font:500 11px/1 var(--sans);padding:7px 8px;border-radius:99px;background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.go{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn svg{width:11px;height:11px;flex:none}
+.fnote{font-size:13px;color:var(--muted);margin-top:10px}
+@media (min-width:720px){
+  .wrap{padding:0 24px}
+  .hero{padding-top:56px}
+  .hero h1{font-size:64px}
+  .grid{grid-template-columns:repeat(3,1fr);gap:14px}
+  .tile{padding:16px 14px 14px;border-radius:18px}
+  .tile h3{font-size:16px}
+}
+@media (min-width:1100px){
+  .grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="kicker">Eat nearby · tile preview</div>
+  <h1>Vietnam and Thailand Trip 2026</h1>
+  <p class="sub">Walking distance from each hotel. Only places rated 4.6+ on Google, checked Nov 2026. This preview does not replace the <a href="index.html#food">trip page</a>.</p>
+</div></header>
+<nav><div class="wrap" id="tabs"></div></nav>
+<main class="wrap" id="board"></main>
+<script src="food.js"></script>
+<script>
+/* Hotel names and direction origins. Saigon always starts at Fusion:
+   the family only sleeps at Sherwood Suites for one night. */
+const HOTELS = {
+  sherwood: {name:"Sherwood Suites", addr:"Sherwood Suites, 192 Nam Ky Khoi Nghia, Ho Chi Minh City"},
+  fusion: {name:"Fusion Original Saigon Centre", addr:"Fusion Original Saigon Centre, 65 Le Loi, Ho Chi Minh City"},
+  tirant: {name:"Tirant Hotel", addr:"Hanoi Tirant Hotel, 38 Gia Ngu, Hoan Kiem, Hanoi"},
+  merlin: {name:"Phuket Marriott Resort & Spa, Merlin Beach", addr:"Phuket Marriott Resort and Spa, Merlin Beach"},
+  dt: {name:"DoubleTree by Hilton Bangkok Ploenchit", addr:"DoubleTree by Hilton Bangkok Ploenchit"}
+};
+const CITY_HOTEL = {saigon:"fusion", hanoi:"tirant", phuket:"merlin", bangkok:"dt"};
+const CITY_IN = {saigon:"Ho Chi Minh City", hanoi:"Hanoi", phuket:"Phuket", bangkok:"Bangkok"};
+const PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
+const OUT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const groupLabel = g => g.label || (g.h && HOTELS[g.h] ? "From " + HOTELS[g.h].name : "Nearby");
+const shortLabel = g => groupLabel(g).split(" · ")[0];
+const isSkip = g => /^skip\b/i.test((g.label || "").trim());
+function originId(city, group) {
+  if (city === "saigon") return "fusion";
+  if (group.h && HOTELS[group.h]) return group.h;
+  return CITY_HOTEL[city];
+}
+function destination(place, city) {
+  if (place.d) return place.d;
+  if (place.q) return place.q;
+  if (place.map) {
+    try {
+      const q = new URL(place.map).searchParams.get("query");
+      if (q) return q;
+    } catch (e) {}
+  }
+  return place.n + ", " + CITY_IN[city];
+}
+const saysWalk = w => /\bwalk/i.test(w || "");
+function dirUrl(origin, dest, mode) {
+  return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(origin) +
+    "&destination=" + encodeURIComponent(dest) + "&travelmode=" + mode;
+}
+function btn(label, href, go, extra) {
+  return `<a class="btn${go ? " go" : ""}" href="${esc(href)}" target="_blank" rel="noopener"${extra || ""}>${go ? OUT : PIN}${esc(label)}</a>`;
+}
+
+const tabs = document.getElementById("tabs");
+const board = document.getElementById("board");
+tabs.innerHTML = FOOD.map(c => `<a href="#food-${c.city}" style="--c:var(--${c.city})">${esc(c.label)}</a>`).join("") +
+  `<a href="index.html">Trip page</a>`;
+
+board.innerHTML = FOOD.map(city => {
+  const groups = city.hotels.map(group => {
+    const label = groupLabel(group);
+    const skip = isSkip(group);
+    const hotel = HOTELS[originId(city.city, group)];
+    const originLine = skip ? "No directions on this list." : "Directions from " + hotel.name;
+    const cards = group.p.map(place => {
+      const mode = saysWalk(place.w) ? "walking" : "driving";
+      const dest = destination(place, city.city);
+      let acts = "";
+      if (!skip) {
+        acts += btn("Directions", dirUrl(hotel.addr, dest, mode), false,
+          ` data-origin="${esc(hotel.name)}" data-mode="${mode}"`);
+      }
+      if (place.map) acts += btn(place.act || "Map", place.map, false);
+      else if (place.d) acts += btn("Walk there", dirUrl(hotel.addr, place.d, "walking"), false);
+      if (place.res) acts += btn("Reserve", place.res, true);
+      const rating = place.r ? `<div class="gr"><i>★</i>Google ${esc(place.r)}${place.k ? ` · ${esc(place.k)} reviews` : ""} · Nov 2026</div>` : "";
+      return `<article class="tile"><div class="g">${esc(shortLabel(group))}</div><h3>${esc(place.n)}</h3>${place.t ? `<span class="tag">${esc(place.t)}</span>` : ""}${place.c ? `<div class="cu">${esc(place.c)}</div>` : ""}${place.y ? `<div class="why">${esc(place.y)}</div>` : ""}${rating}${place.w ? `<span class="chip">${esc(place.w)}</span>` : ""}<div class="acts">${acts}</div></article>`;
+    }).join("");
+    return `<section class="group"><div class="glabel">${esc(label)}</div><div class="origin">${esc(originLine)}</div><div class="grid">${cards}</div>${group.note ? `<p class="fnote">${esc(group.note)}</p>` : ""}</section>`;
+  }).join("");
+  return `<section class="city" id="food-${city.city}" style="--c:var(--${city.city})"><div class="fhead"><strong>${esc(city.label)}</strong><span>${esc(city.dates)}</span></div>${groups}</section>`;
+}).join("");
+
+const links = [...document.querySelectorAll("#tabs a[href^='#']")];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+}), {rootMargin:"-40% 0px -50% 0px"});
+document.querySelectorAll(".city").forEach(s => io.observe(s));
+</script>
+</body>
+</html>
