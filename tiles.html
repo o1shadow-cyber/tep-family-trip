@@ -45,8 +45,8 @@ nav a.on{color:var(--ink);border-color:var(--c,var(--ink))}
 .name{display:block;font:500 18px/1.2 var(--serif);letter-spacing:-.01em}
 .meta{display:block;margin-top:4px;font:500 12px/1.35 var(--sans);color:var(--muted)}
 .meta i{font-style:normal;color:#C4A15A}
-.note{display:block;margin-top:5px;font:400 13px/1.4 var(--sans);color:var(--quiet);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.place.open .note{white-space:normal}
+.note{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-top:5px;font:400 13px/1.4 var(--sans);color:var(--quiet);white-space:normal}
+.place.open .note{display:block;-webkit-line-clamp:unset;overflow:visible}
 .extra{display:none;margin-top:6px;font:400 12.5px/1.4 var(--sans);color:var(--muted)}
 .place.open .extra{display:block}
 .tag{display:inline-block;margin-right:6px;font:600 9px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:99px;padding:3px 6px;vertical-align:1px}
@@ -112,6 +112,36 @@ function destination(place, city) {
   }
   return place.n + ", " + CITY_IN[city];
 }
+/* Sherwood Suites list is not shown. Every place on it is in the same
+   central pocket as the hotel, about 1.1–2.4 km from Fusion: roughly
+   16–30 min on foot and a few minutes by car with no traffic, so a short
+   ride rather than an easy walk. None were far enough to drop. Their
+   Sherwood walk times are removed; a traffic-free drive minute would be
+   a guess, so these rows have no time chip and Directions opens driving. */
+const SHERWOOD_TO_FUSION = new Set([
+  "Izakaya TOKI",
+  "La SIRENA Saigon",
+  "Nhà Anh",
+  "HOME Saigon",
+  "Merci Bakery",
+  "Vị Sài Gòn",
+  "Pizza 4P’s Hai Bà Trưng",
+  "Little HaNoi Egg Coffee"
+]);
+function tilesGroups(city) {
+  if (city.city !== "saigon") return city.hotels;
+  const sherwood = city.hotels.find(g => g.h === "sherwood");
+  const moved = (sherwood ? sherwood.p : []).filter(p => SHERWOOD_TO_FUSION.has(p.n)).map(p => {
+    const copy = Object.assign({}, p);
+    delete copy.w;
+    return copy;
+  });
+  return city.hotels.filter(g => g.h !== "sherwood").map(g => {
+    if (g.h !== "fusion") return g;
+    const have = new Set(g.p.map(p => p.n));
+    return Object.assign({}, g, {p: g.p.concat(moved.filter(p => !have.has(p.n)))});
+  });
+}
 const saysWalk = w => /\bwalk/i.test(w || "");
 function dirUrl(origin, dest, mode) {
   return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(origin) +
@@ -132,7 +162,7 @@ tabs.innerHTML = FOOD.map(c => `<a href="#food-${c.city}" style="--c:var(--${c.c
   `<a href="index.html">Trip page</a>`;
 
 board.innerHTML = FOOD.map(city => {
-  const groups = city.hotels.map(group => {
+  const groups = tilesGroups(city).map(group => {
     const copy = sectionCopy(group);
     const skip = isSkip(group);
     const hotel = HOTELS[originId(city.city, group)];
@@ -158,31 +188,13 @@ board.innerHTML = FOOD.map(city => {
   return `<section class="city wrap" id="food-${city.city}" style="--c:var(--${city.city})"><div class="fhead"><strong>${esc(city.label)}</strong><span>${esc(city.dates)}</span></div>${groups}</section>`;
 }).join("");
 
-function fitNote(el) {
-  const full = el.dataset.full || el.textContent;
-  el.dataset.full = full;
-  el.textContent = full;
-  if (el.scrollWidth <= el.clientWidth + 1) return;
-  const words = full.split(" ");
-  for (let keep = words.length - 1; keep > 1; keep--) {
-    el.textContent = words.slice(0, keep).join(" ").replace(/[.,;:]$/, "") + "…";
-    if (el.scrollWidth <= el.clientWidth + 1) return;
-  }
-}
-const fitAll = () => document.querySelectorAll(".place:not(.open) .note").forEach(fitNote);
-fitAll();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 board.addEventListener("click", e => {
   if (e.target.closest("a")) return;
   const hit = e.target.closest(".hit");
   if (!hit) return;
   const place = hit.closest(".place");
-  const note = place.querySelector(".note");
   const open = place.classList.toggle("open");
   hit.setAttribute("aria-expanded", open ? "true" : "false");
-  if (!note) return;
-  if (open) note.textContent = note.dataset.full || note.textContent;
-  else fitNote(note);
 });
 
 const links = [...document.querySelectorAll("#tabs a[href^='#']")];
