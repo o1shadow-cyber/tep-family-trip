@@ -10,59 +10,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FAF7F2; --ink:#1D1A17; --muted:#8C8379; --line:#E9E2D8; --card:#FFFFFF;
+  --paper:#FAF7F2; --ink:#1D1A17; --muted:#8C8379; --quiet:#6F675E; --line:#E7E0D6; --card:#FFFFFF;
   --saigon:#C0573A; --hanoi:#2F7F68; --phuket:#16798A; --bangkok:#B5852A;
   --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:48px}
-body{background:var(--paper);color:var(--ink);font:400 15px/1.4 var(--sans);-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit}
-.wrap{max-width:1100px;margin:0 auto;padding:0 14px}
-.hero{padding:16px 0 2px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 28px}
+.hero{padding:18px 0 4px}
 .kicker{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.hero h1{font:300 30px/1.05 var(--serif);letter-spacing:-.02em;margin:8px 0 0}
-.sub{color:var(--muted);margin-top:6px;font-size:13px}
+.hero h1{font:400 32px/1.05 var(--serif);letter-spacing:-.02em;margin:10px 0 0}
+.sub{color:var(--muted);margin-top:8px;font-size:13px}
 .sub a{text-decoration:underline;text-underline-offset:2px}
 nav{position:sticky;top:0;z-index:10;background:rgba(250,247,242,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;padding-top:0;padding-bottom:0}
+nav .wrap{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;padding-top:0;padding-bottom:0}
 nav .wrap::-webkit-scrollbar{display:none}
 nav a{flex:none;display:flex;align-items:center;min-height:44px;font:500 13px/1 var(--sans);color:var(--muted);border-bottom:2px solid transparent}
 nav a.on{color:var(--ink);border-color:var(--c,var(--ink))}
-.city{padding:14px 0 2px;scroll-margin-top:48px}
-.fhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-bottom:6px;border-bottom:2px solid var(--c)}
-.fhead strong{font:400 26px/1 var(--serif)}
-.fhead span{font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--c);white-space:nowrap}
-.ghead{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin:12px 0 2px}
-.ghead strong{font:600 11px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
-.ghead .from{font:500 11px/1.3 var(--sans);color:var(--muted)}
-.gextra{font-size:12px;line-height:1.35;color:var(--muted);margin-top:1px}
-.list{display:flex;flex-direction:column}
-.place{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"top top" "note acts" "extra extra";column-gap:8px;row-gap:0;align-items:center;padding:1px 0 2px;border-bottom:1px solid var(--line)}
-.hit{display:contents}
-.top{grid-area:top;display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0;padding-top:2px;text-align:left}
-.name{flex:1 1 auto;min-width:0;font:600 14px/1.25 var(--sans);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.meta{flex:0 1 auto;min-width:0;font:500 12px/1.2 var(--sans);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.meta i{font-style:normal;color:#E0A100}
-.when{color:var(--c);margin-left:6px}
-.note{grid-area:note;min-width:0;background:none;border:0;padding:0 0 2px;text-align:left;font:400 13px/1.3 var(--sans);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
-.note:focus-visible,.btn:focus-visible,nav a:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.city{padding-top:18px;scroll-margin-top:48px}
+.fhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px}
+.fhead strong{font:400 28px/1 var(--serif);letter-spacing:-.02em}
+.fhead span{font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.group{margin-top:22px}
+.group:first-child{margin-top:6px}
+.ghead h3{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ghead h3::before{content:"";display:block;width:22px;height:2px;border-radius:2px;background:var(--c);margin-bottom:8px}
+.ghead p{margin-top:4px;font:400 13px/1.35 var(--serif);color:var(--quiet)}
+.list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.place{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px 0}
+.hit{display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer}
+.name{display:block;font:500 18px/1.2 var(--serif);letter-spacing:-.01em}
+.meta{display:block;margin-top:4px;font:500 12px/1.35 var(--sans);color:var(--muted)}
+.meta i{font-style:normal;color:#C4A15A}
+.note{display:block;margin-top:5px;font:400 13px/1.4 var(--sans);color:var(--quiet);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .place.open .note{white-space:normal}
-.acts{grid-area:acts;display:flex;gap:6px;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 10px;border-radius:10px;font:600 12px/1 var(--sans);border:1px solid transparent}
-.btn.dir{background:var(--ink);color:#fff}
-.btn.go{background:#fff;color:var(--ink);border-color:var(--ink)}
-.extra{grid-area:extra;display:none;padding:2px 0 6px;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.extra{display:none;margin-top:6px;font:400 12.5px/1.4 var(--sans);color:var(--muted)}
 .place.open .extra{display:block}
-.tag{display:inline-block;font:600 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:99px;padding:3px 6px;margin:0 6px 0 0;vertical-align:1px}
-.fnote{font-size:12px;line-height:1.35;color:var(--muted);margin-top:6px}
+.tag{display:inline-block;margin-right:6px;font:600 9px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:99px;padding:3px 6px;vertical-align:1px}
+.acts{display:flex;flex-wrap:wrap;align-items:center;margin:0 0 0 -2px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px 6px 2px;background:none;border:0}
+.btn span{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border:1px solid #E4DCD2;border-radius:99px;background:#FBF9F6;font:500 12px/1 var(--sans);color:var(--ink)}
+.btn svg{width:12px;height:12px;color:var(--c)}
+.btn:focus-visible span,.hit:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.fnote{margin-top:8px;font:400 12.5px/1.4 var(--serif);color:var(--muted)}
 @media (min-width:800px){
-  .wrap{padding:0 24px}
-  .hero{padding-top:28px}
-  .hero h1{font-size:48px}
-  .list{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
-  .place{break-inside:avoid}
+  .wrap{padding:0 28px 40px}
+  .hero{padding-top:32px}
+  .hero h1{font-size:52px}
+  .fhead strong{font-size:40px}
+  .list{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+  .fnote{grid-column:1 / -1;margin-top:0}
 }
 </style>
 </head>
@@ -73,11 +73,10 @@ nav a.on{color:var(--ink);border-color:var(--c,var(--ink))}
   <p class="sub">Google ratings as of Nov 2026. <a href="index.html#food">Trip page</a></p>
 </div></header>
 <nav><div class="wrap" id="tabs"></div></nav>
-<main class="wrap" id="board"></main>
+<main id="board"></main>
 <script src="food.js"></script>
 <script>
-/* Hotel names and direction origins. Saigon always starts at Fusion:
-   the family only sleeps at Sherwood Suites for one night. */
+/* Direction origins. Saigon always starts at Fusion: one night at Sherwood. */
 const HOTELS = {
   sherwood: {name:"Sherwood Suites", addr:"Sherwood Suites, 192 Nam Ky Khoi Nghia, Ho Chi Minh City"},
   fusion: {name:"Fusion Original Saigon Centre", addr:"Fusion Original Saigon Centre, 65 Le Loi, Ho Chi Minh City"},
@@ -87,9 +86,16 @@ const HOTELS = {
 };
 const CITY_HOTEL = {saigon:"fusion", hanoi:"tirant", phuket:"merlin", bangkok:"dt"};
 const CITY_IN = {saigon:"Ho Chi Minh City", hanoi:"Hanoi", phuket:"Phuket", bangkok:"Bangkok"};
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-const groupLabel = g => g.label || (g.h && HOTELS[g.h] ? "From " + HOTELS[g.h].name : "Nearby");
 const isSkip = g => /^skip\b/i.test((g.label || "").trim());
+function sectionCopy(group) {
+  if (isSkip(group)) return {title:"Skip", sub:""};
+  if (!group.label) return {title:"Near the hotel", sub:""};
+  if (/^old town\b/i.test(group.label)) return {title:"Old Town food", sub:"One trip · 35–50 min each way"};
+  const bits = group.label.split(" · ");
+  return {title:bits[0], sub:bits.slice(1).join(" · ")};
+}
 function originId(city, group) {
   if (city === "saigon") return "fusion";
   if (group.h && HOTELS[group.h]) return group.h;
@@ -111,8 +117,13 @@ function dirUrl(origin, dest, mode) {
   return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(origin) +
     "&destination=" + encodeURIComponent(dest) + "&travelmode=" + mode;
 }
+function noteOf(place) {
+  if (!place.y) return "";
+  return place.y.replace(" Best for dinner Mon Nov 30 (Sun or Tue also work).", " Sunday or Tuesday dinner works too.");
+}
 function btn(label, href, kind, extra) {
-  return `<a class="btn ${kind}" href="${esc(href)}" target="_blank" rel="noopener"${extra || ""}>${esc(label)}</a>`;
+  const icon = kind === "dir" ? ARROW : "";
+  return `<a class="btn ${kind}" href="${esc(href)}" target="_blank" rel="noopener"${extra || ""}><span>${icon}${esc(label)}</span></a>`;
 }
 
 const tabs = document.getElementById("tabs");
@@ -122,14 +133,9 @@ tabs.innerHTML = FOOD.map(c => `<a href="#food-${c.city}" style="--c:var(--${c.c
 
 board.innerHTML = FOOD.map(city => {
   const groups = city.hotels.map(group => {
-    const full = groupLabel(group);
-    const bits = full.split(" · ");
-    const title = bits[0];
-    const extraNote = bits.slice(1).join(" · ");
+    const copy = sectionCopy(group);
     const skip = isSkip(group);
     const hotel = HOTELS[originId(city.city, group)];
-    const listedHotel = group.h && HOTELS[group.h] ? HOTELS[group.h].name : "";
-    const showOrigin = !skip && hotel.name !== listedHotel;
     const cards = group.p.map(place => {
       const mode = saysWalk(place.w) ? "walking" : "driving";
       const dest = destination(place, city.city);
@@ -140,26 +146,43 @@ board.innerHTML = FOOD.map(city => {
       }
       if (place.res) acts += btn("Reserve", place.res, "go");
       else if (place.act && place.map && /reserv/i.test(place.act)) acts += btn("Reserve", place.map, "go");
-      const meta = [
-        place.r ? `<i>★</i> ${esc(place.r)}${place.k ? ` · ${esc(place.k)}` : ""}` : "",
-        place.w ? `<span class="when">${esc(place.w)}</span>` : ""
-      ].filter(Boolean).join("");
-      const note = place.y || "";
+      const bits = [];
+      if (place.r) bits.push(`<i>★</i> ${esc(place.r)}${place.k ? ` · ${esc(place.k)} reviews` : ""}`);
+      if (place.w) bits.push(esc(place.w));
+      const meta = bits.join(" · ").replace(" · <i>", " <i>");
       const more = [place.t ? `<span class="tag">${esc(place.t)}</span>` : "", place.c ? esc(place.c) : ""].filter(Boolean).join(" ");
-      return `<article class="place"><button type="button" class="hit" aria-expanded="false"><span class="top"><span class="name">${esc(place.n)}</span>${meta ? `<span class="meta">${meta}</span>` : ""}</span>${note ? `<span class="note">${esc(note)}</span>` : `<span class="note"></span>`}${more ? `<span class="extra">${more}</span>` : ""}</button>${acts ? `<span class="acts">${acts}</span>` : ""}</article>`;
+      return `<article class="place"><button type="button" class="hit" aria-expanded="false"><span class="name">${esc(place.n)}</span>${meta ? `<span class="meta">${meta}</span>` : ""}${place.y ? `<span class="note">${esc(noteOf(place))}</span>` : ""}${more ? `<span class="extra">${more}</span>` : ""}</button>${acts ? `<div class="acts">${acts}</div>` : ""}</article>`;
     }).join("");
-    return `<section class="group"><div class="ghead"><strong>${esc(title)}</strong>${showOrigin ? `<span class="from">Directions from ${esc(hotel.name)}</span>` : ""}</div>${extraNote ? `<p class="gextra">${esc(extraNote)}</p>` : ""}<div class="list">${cards}</div>${group.note ? `<p class="fnote">${esc(group.note)}</p>` : ""}</section>`;
+    return `<section class="group"><header class="ghead"><h3>${esc(copy.title)}</h3>${copy.sub ? `<p>${esc(copy.sub)}</p>` : ""}</header><div class="list">${cards}</div>${group.note ? `<p class="fnote">${esc(group.note)}</p>` : ""}</section>`;
   }).join("");
-  return `<section class="city" id="food-${city.city}" style="--c:var(--${city.city})"><div class="fhead"><strong>${esc(city.label)}</strong><span>${esc(city.dates)}</span></div>${groups}</section>`;
+  return `<section class="city wrap" id="food-${city.city}" style="--c:var(--${city.city})"><div class="fhead"><strong>${esc(city.label)}</strong><span>${esc(city.dates)}</span></div>${groups}</section>`;
 }).join("");
 
+function fitNote(el) {
+  const full = el.dataset.full || el.textContent;
+  el.dataset.full = full;
+  el.textContent = full;
+  if (el.scrollWidth <= el.clientWidth + 1) return;
+  const words = full.split(" ");
+  for (let keep = words.length - 1; keep > 1; keep--) {
+    el.textContent = words.slice(0, keep).join(" ").replace(/[.,;:]$/, "") + "…";
+    if (el.scrollWidth <= el.clientWidth + 1) return;
+  }
+}
+const fitAll = () => document.querySelectorAll(".place:not(.open) .note").forEach(fitNote);
+fitAll();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 board.addEventListener("click", e => {
   if (e.target.closest("a")) return;
   const hit = e.target.closest(".hit");
   if (!hit) return;
   const place = hit.closest(".place");
+  const note = place.querySelector(".note");
   const open = place.classList.toggle("open");
   hit.setAttribute("aria-expanded", open ? "true" : "false");
+  if (!note) return;
+  if (open) note.textContent = note.dataset.full || note.textContent;
+  else fitNote(note);
 });
 
 const links = [...document.querySelectorAll("#tabs a[href^='#']")];
