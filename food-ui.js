@@ -9,6 +9,21 @@ var FOOD_HOTELS = {
 var FOOD_CITY_HOTEL = {saigon:"fusion", hanoi:"tirant", phuket:"merlin", bangkok:"dt"};
 var FOOD_CITY_IN = {saigon:"Ho Chi Minh City", hanoi:"Hanoi", phuket:"Phuket", bangkok:"Bangkok"};
 var FOOD_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+/* Real photos only. Wikimedia Commons, CC BY / CC BY-SA / CC0. */
+var FOOD_PHOTOS = {
+  "Anan Saigon": "img/food/anan.jpg",
+  "Maison Marou": "img/food/maison-marou.jpg",
+  "Saigon Café, Sheraton Saigon Grand Opera": "img/food/sheraton-saigon.jpg",
+  "KOKI at Capella": "img/food/capella-hanoi.jpg",
+  "Lumphini Park": "img/food/lumphini.jpg",
+  "Central Embassy": "img/food/central-embassy.jpg",
+  "Siam BTS": "img/food/siam-bts.jpg",
+  "Phloen Chit BTS": "img/food/phloen-chit-bts.jpg",
+  "Chit Lom BTS": "img/food/chit-lom-bts.jpg",
+  "Tops Food Hall": "img/food/central-chidlom.jpg",
+  "Atrium, Landmark Bangkok": "img/food/landmark-bangkok.jpg",
+  "MRT Sukhumvit": "img/food/asok-bts.jpg"
+};
 /* Former Sherwood list. All are a short ride from Fusion (about 1.1–2.4 km).
    No minute chip: the measured drive times ignore traffic. */
 var SHERWOOD_TO_FUSION = {
@@ -51,6 +66,27 @@ function foodSaysWalk(w) { return /\bwalk/i.test(w || ""); }
 function foodDir(origin, dest, mode) {
   return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(origin) +
     "&destination=" + encodeURIComponent(dest) + "&travelmode=" + mode;
+}
+function foodMono(name) {
+  var parts = String(name).replace(/[^\p{L}\p{N}]+/gu, " ").trim().split(/\s+/).filter(Boolean);
+  var skip = {de:1, the:1, at:1, by:1, and:1, of:1};
+  var picks = [];
+  for (var i = 0; i < parts.length && picks.length < 2; i++) {
+    if (skip[parts[i].toLowerCase()]) continue;
+    picks.push(parts[i]);
+  }
+  if (!picks.length) picks = parts.slice(0, 2);
+  if (picks.length >= 2) return (picks[0][0] + picks[1][0]).toUpperCase();
+  var raw = (picks[0] || name).replace(/[^\p{L}\p{N}]/gu, "");
+  return raw.slice(0, 2).toUpperCase() || "•";
+}
+function foodThumb(place, skip) {
+  if (skip) return "";
+  var src = FOOD_PHOTOS[place.n];
+  if (src) {
+    return '<img class="fd-thumb" src="' + foodEsc(src) + '" alt="' + foodEsc(place.n) + '" width="72" height="72" loading="lazy" decoding="async">';
+  }
+  return '<span class="fd-ph" aria-hidden="true">' + foodEsc(foodMono(place.n)) + '</span>';
 }
 function foodBtn(label, href, kind, extra) {
   var icon = kind === "dir" ? FOOD_ARROW : "";
@@ -115,12 +151,13 @@ function foodCard(place, hotel, opts) {
   if (opts.adults || place.adults) tags.push('<span class="fd-tag adult">Adults-only</span>');
   var tagRow = tags.length ? '<span class="fd-tags">' + tags.join("") + '</span>' : '';
   var more = place.c ? foodEsc(place.c) : '';
-  return '<article class="fd-card"><button type="button" class="fd-hit" aria-expanded="false"><span class="fd-name">' + foodEsc(place.n) + '</span>' +
+  return '<article class="fd-card' + (skip ? ' skip' : '') + '"><div class="fd-main">' + foodThumb(place, skip) +
+    '<button type="button" class="fd-hit" aria-expanded="false"><span class="fd-name">' + foodEsc(place.n) + '</span>' +
     tagRow +
     (meta ? '<span class="fd-meta">' + meta + '</span>' : '') +
     (place.y ? '<span class="fd-note">' + foodEsc(place.y) + '</span>' : '') +
     (more ? '<span class="fd-extra">' + more + '</span>' : '') +
-    '</button>' + (acts ? '<div class="fd-acts">' + acts + '</div>' : '') + '</article>';
+    '</button></div>' + (acts ? '<div class="fd-acts">' + acts + '</div>' : '') + '</article>';
 }
 
 function renderFood() {
@@ -153,7 +190,7 @@ function renderFood() {
       foodEsc(city.label) + '</strong><span>' + foodEsc(city.dates) + '</span></div>' + pills + body + '</section>';
   }).join("");
   return '<section class="sec wrap wide" id="food"><div class="kicker">Eat nearby</div><h2 style="margin-top:14px">Food</h2>' +
-    '<p class="sub">Google ratings as of Nov 2026.</p><div class="fd-tabs">' + tabs + '</div>' + cities + '</section>';
+    '<p class="sub">Google ratings as of Nov 2026. Place photos from Wikimedia Commons.</p><div class="fd-tabs">' + tabs + '</div>' + cities + '</section>';
 }
 
 function bindFood() {
