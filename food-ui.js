@@ -9,6 +9,24 @@ var FOOD_HOTELS = {
 var FOOD_CITY_HOTEL = {saigon:"fusion", hanoi:"tirant", phuket:"merlin", bangkok:"dt"};
 var FOOD_CITY_IN = {saigon:"Ho Chi Minh City", hanoi:"Hanoi", phuket:"Phuket", bangkok:"Bangkok"};
 var FOOD_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+var FOOD_CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/></svg>';
+/* Tighter Maps queries where the plain name opened a list or the wrong branch. */
+var FOOD_PHOTO_QUERY = {
+  "Tet": "Tet Restaurant 29 Lan Ong Hanoi",
+  "Cái Mâm": "Cai Mam 23 Dao Duy Tu Hanoi",
+  "Aura": "Aura Cocktail Bar Nha Chung Hanoi",
+  "Barbak": "Barbak restaurant Tay Ho Hanoi",
+  "The Luxe Bar": "The Luxe Bar Hanoi",
+  "Upper Cloud Sky Bar": "Upper Cloud Sky Bar Cau Go Hanoi",
+  "SkyOn9": "SkyOn9 Rooftop Bar Hoan Kiem Hanoi",
+  "Skyline Hanoi": "Skyline Rooftop Bar Tirant Hanoi",
+  "Cloud Nine": "Cloud Nine Restaurant Hanoi",
+  "Na Ploenchit Boat Noodle": "Na Ploenchit boat noodle restaurant Bangkok",
+  "Kinnaree by Vanessa Wu": "Kinnaree by Vanessa Wu Bangkok Soi 8",
+  "Hải Sản Hoàng Gia": "Hải Sản Hoàng Gia Bến Thành Ho Chi Minh City",
+  "An Cua Saigon": "An Cua Saigon Ben Thanh Market",
+  "Chài Village": "Chài Village 99 Nguyen Hue Ho Chi Minh City"
+};
 /* Real photos only. Wikimedia Commons, CC BY / CC BY-SA / CC0. */
 var FOOD_PHOTOS = {
   "Anan Saigon": "img/food/anan.jpg",
@@ -88,8 +106,32 @@ function foodThumb(place, skip) {
   }
   return '<span class="fd-ph" aria-hidden="true">' + foodEsc(foodMono(place.n)) + '</span>';
 }
+function foodSearch(q) {
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+}
+function foodSpecific(s) {
+  return !!s && (/\d/.test(s) || s.split(",").length >= 3);
+}
+function foodPhotosUrl(place, city) {
+  if (FOOD_PHOTO_QUERY[place.n]) return foodSearch(FOOD_PHOTO_QUERY[place.n]);
+  if (place.id) {
+    var qid = place.q || place.d || place.n;
+    return foodSearch(qid) + "&query_place_id=" + encodeURIComponent(place.id);
+  }
+  var map = place.map || "", mq = "";
+  if (/google\.com\/maps|maps\.app\.goo\.gl/i.test(map)) {
+    try { mq = new URL(map).searchParams.get("query") || ""; } catch (e) {}
+    if (foodSpecific(mq)) return map;
+  }
+  if (foodSpecific(place.q)) return foodSearch(place.q);
+  if (foodSpecific(place.d)) return foodSearch(place.d);
+  if (mq) return map;
+  if (place.d) return foodSearch(place.d);
+  if (place.q) return foodSearch(place.q);
+  return foodSearch(place.n + " " + FOOD_CITY_IN[city]);
+}
 function foodBtn(label, href, kind, extra) {
-  var icon = kind === "dir" ? FOOD_ARROW : "";
+  var icon = kind === "dir" ? FOOD_ARROW : kind === "photo" ? FOOD_CAM : "";
   return '<a class="fd-btn ' + kind + '" href="' + foodEsc(href) + '" target="_blank" rel="noopener"' + (extra || "") + '><span>' + icon + foodEsc(label) + '</span></a>';
 }
 function foodGroups(city) {
@@ -140,6 +182,7 @@ function foodCard(place, hotel, opts) {
       ' data-origin="' + foodEsc(hotel.name) + '" data-mode="' + mode + '"');
   }
   if (place.map && /google\.com\/maps|maps\.app\.goo\.gl/i.test(place.map)) acts += foodBtn("Map", place.map, "map");
+  if (!skip && !opts.utility) acts += foodBtn("Photos", foodPhotosUrl(place, opts.city), "photo");
   if (place.res) acts += foodBtn("Reserve", place.res, "go");
   else if (place.act && place.map && /reserv/i.test(place.act)) acts += foodBtn("Reserve", place.map, "go");
   var bits = [];
@@ -178,7 +221,7 @@ function renderFood() {
       var copy = foodSection(group);
       var hotel = FOOD_HOTELS[foodOriginId(city.city, group)];
       var cards = group.p.map(function(place) {
-        return foodCard(place, hotel, {skip:foodSkip(group), forceWalk:!!group.walk, adults:!!group.adults, city:city.city});
+        return foodCard(place, hotel, {skip:foodSkip(group), forceWalk:!!group.walk, adults:!!group.adults, utility:/Getting around|Mini-marts/i.test(group.label || ""), city:city.city});
       }).join("");
       return '<section class="fd-group" data-cat="' + foodEsc(copy.title) + '"><header class="fd-kicker"><h3>' + foodEsc(copy.title) + '</h3>' +
         (copy.sub ? '<p>' + foodEsc(copy.sub) + '</p>' : '') +
