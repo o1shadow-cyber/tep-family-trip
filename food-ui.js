@@ -25,6 +25,7 @@ function foodSkip(g) { return /^skip\b/i.test((g.label || "").trim()); }
 function foodSection(group) {
   if (foodSkip(group)) return {title:"Skip", sub:""};
   if (group.label === "Short Grab ride") return {title:"Short Grab ride", sub:""};
+  if (group.label === "Bars") return {title:"Bars", sub:"Adults only"};
   if (!group.label) return {title:"Near the hotel", sub:""};
   if (/^old town\b/i.test(group.label)) return {title:"Old Town food", sub:"One trip · 35–50 min each way"};
   var bits = group.label.split(" · ");
@@ -102,14 +103,20 @@ function foodCard(place, hotel, opts) {
     acts += foodBtn("Directions", foodDir(hotel.addr, dest, mode), "dir",
       ' data-origin="' + foodEsc(hotel.name) + '" data-mode="' + mode + '"');
   }
+  if (place.map && /google\.com\/maps|maps\.app\.goo\.gl/i.test(place.map)) acts += foodBtn("Map", place.map, "map");
   if (place.res) acts += foodBtn("Reserve", place.res, "go");
   else if (place.act && place.map && /reserv/i.test(place.act)) acts += foodBtn("Reserve", place.map, "go");
   var bits = [];
-  if (place.r) bits.push('<i>★</i> ' + foodEsc(place.r) + (place.k ? ' · ' + foodEsc(place.k) + ' reviews' : ''));
+  if (place.r) bits.push('<i>★</i> ' + foodEsc(place.r) + (place.k ? ' (' + foodEsc(place.k) + ')' : ''));
   if (place.w) bits.push(foodEsc(place.w));
   var meta = bits.join(" · ");
-  var more = [place.t ? '<span class="fd-tag">' + foodEsc(place.t) + '</span>' : '', place.c ? foodEsc(place.c) : ''].filter(Boolean).join(" ");
+  var tags = [];
+  if (place.t) tags.push('<span class="fd-tag">' + foodEsc(place.t) + '</span>');
+  if (opts.adults || place.adults) tags.push('<span class="fd-tag adult">Adults-only</span>');
+  var tagRow = tags.length ? '<span class="fd-tags">' + tags.join("") + '</span>' : '';
+  var more = place.c ? foodEsc(place.c) : '';
   return '<article class="fd-card"><button type="button" class="fd-hit" aria-expanded="false"><span class="fd-name">' + foodEsc(place.n) + '</span>' +
+    tagRow +
     (meta ? '<span class="fd-meta">' + meta + '</span>' : '') +
     (place.y ? '<span class="fd-note">' + foodEsc(place.y) + '</span>' : '') +
     (more ? '<span class="fd-extra">' + more + '</span>' : '') +
@@ -121,19 +128,29 @@ function renderFood() {
     return '<a class="fd-tab" href="#food-' + c.city + '" style="--c:var(--' + c.city + ')">' + foodEsc(c.label) + '</a>';
   }).join("");
   var cities = FOOD.map(function(city) {
-    var groups = foodGroups(city).map(function(group) {
+    var groups = foodGroups(city);
+    var cats = ["All"];
+    groups.forEach(function(group) {
+      var title = foodSection(group).title;
+      if (cats.indexOf(title) < 0) cats.push(title);
+    });
+    var pills = '<div class="fd-filters" role="tablist">' + cats.map(function(cat, i) {
+      return '<button type="button" class="fd-pill' + (i === 0 ? ' on' : '') + '" data-cat="' + foodEsc(cat) + '">' + foodEsc(cat) + '</button>';
+    }).join("") + '</div>';
+    var body = groups.map(function(group) {
       var copy = foodSection(group);
       var hotel = FOOD_HOTELS[foodOriginId(city.city, group)];
       var cards = group.p.map(function(place) {
-        return foodCard(place, hotel, {skip:foodSkip(group), forceWalk:!!group.walk, city:city.city});
+        return foodCard(place, hotel, {skip:foodSkip(group), forceWalk:!!group.walk, adults:!!group.adults, city:city.city});
       }).join("");
-      return '<section class="fd-group"><header class="fd-kicker"><h3>' + foodEsc(copy.title) + '</h3>' +
+      return '<section class="fd-group" data-cat="' + foodEsc(copy.title) + '"><header class="fd-kicker"><h3>' + foodEsc(copy.title) + '</h3>' +
         (copy.sub ? '<p>' + foodEsc(copy.sub) + '</p>' : '') +
         '</header><div class="fd-list">' + cards + '</div>' +
         (group.note ? '<p class="fd-foot">' + foodEsc(group.note) + '</p>' : '') + '</section>';
     }).join("");
+    groups = pills + body;
     return '<section class="fd-city" id="food-' + city.city + '" style="--c:var(--' + city.city + ')"><div class="fd-cityhead"><strong>' +
-      foodEsc(city.label) + '</strong><span>' + foodEsc(city.dates) + '</span></div>' + groups + '</section>';
+      foodEsc(city.label) + '</strong><span>' + foodEsc(city.dates) + '</span></div>' + pills + body + '</section>';
   }).join("");
   return '<section class="sec wrap wide" id="food"><div class="kicker">Eat nearby</div><h2 style="margin-top:14px">Food</h2>' +
     '<p class="sub">Google ratings as of Nov 2026.</p><div class="fd-tabs">' + tabs + '</div>' + cities + '</section>';
@@ -143,6 +160,18 @@ function bindFood() {
   var root = document.getElementById("food");
   if (!root) return;
   root.addEventListener("click", function(e) {
+    var pill = e.target.closest(".fd-pill");
+    if (pill && root.contains(pill)) {
+      var cityEl = pill.closest(".fd-city");
+      var cat = pill.getAttribute("data-cat");
+      [].slice.call(cityEl.querySelectorAll(".fd-pill")).forEach(function(p) {
+        p.classList.toggle("on", p === pill);
+      });
+      [].slice.call(cityEl.querySelectorAll(".fd-group")).forEach(function(g) {
+        g.hidden = cat !== "All" && g.getAttribute("data-cat") !== cat;
+      });
+      return;
+    }
     if (e.target.closest("a")) return;
     var hit = e.target.closest(".fd-hit");
     if (!hit || !root.contains(hit)) return;

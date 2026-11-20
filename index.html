@@ -267,6 +267,11 @@ footer a{text-decoration:underline;text-underline-offset:2px}
 #food .fd-tabs::-webkit-scrollbar{display:none}
 #food .fd-tab{flex:none;display:flex;align-items:center;min-height:44px;font:500 13px/1 var(--sans);color:var(--muted);border-bottom:2px solid transparent}
 #food .fd-tab.on{color:var(--ink);border-color:var(--c,var(--ink))}
+#food .fd-filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+#food .fd-pill{flex:none;min-height:36px;padding:0 12px;border-radius:99px;border:1px solid var(--line);background:#fff;font:500 12px/1 var(--sans);color:var(--muted);cursor:pointer}
+#food .fd-pill.on{color:#fff;background:var(--c);border-color:var(--c)}
+#food .fd-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+#food .fd-tag.adult{color:#8A3A3A;border-color:#C98A8A}
 #food .fd-city{padding-top:22px;scroll-margin-top:108px}
 #food .fd-cityhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px}
 #food .fd-cityhead strong{font:400 28px/1 var(--serif);letter-spacing:-.02em}
@@ -431,16 +436,16 @@ const CITIES = [
     {time:"3:30 PM", what:"Notre Dame Cathedral", note:"Outside only, under restoration.", acts:[map("Notre Dame Cathedral Saigon")], eta:"Walk 10–15 min"},
     {time:"Next", what:"Central Post Office", note:"Send a postcard home.", acts:[map("Saigon Central Post Office")], eta:"Walk 1–2 min"},
     {time:"Dusk", what:"Nguyen Hue walking street", acts:[B("Map",L.nguyenHue,"map")], eta:"Walk 5–10 min"},
-    {time:"5:30 PM", what:`<a class="pl" href="https://www.google.com/maps/search/?api=1&query=Anan+Saigon+Ho+Chi+Minh+City" target="_blank" rel="noopener">Anan Saigon${I.out}</a>`, pick:"Reserved", acts:[B("Map","https://www.google.com/maps/search/?api=1&query=Anan+Saigon+Ho+Chi+Minh+City","map")]},
-    {time:"Evening", what:"Ben Nghe Street Food Market", note:"Bring cash.", acts:[map("Ben Nghe Street Food Market 134 Nam Ky Khoi Nghia")], eta:"Walk 10 min"}]},
+    {time:"5:30 PM", what:`<a class="pl" href="https://www.google.com/maps/search/?api=1&query=Anan+Saigon+Ho+Chi+Minh+City" target="_blank" rel="noopener">Anan Saigon${I.out}</a>`, pick:"Reserved", note:"Evening is open after dinner.", acts:[B("Map","https://www.google.com/maps/search/?api=1&query=Anan+Saigon+Ho+Chi+Minh+City","map")]}]},
   {d:"22", wd:"Sun Nov 22", t:"Two plans today", items:[
     {track:"Wife + kids · Vung Tau"},
     {time:"9 AM", what:"Fast ferry from Pier 4 Bach Dang", note:"GreenlinesDP, about 2 hours. Grandma’s hometown.", acts:[go("Ferry booking",L.ferry), map("Bach Dang Speedboat Terminal 10B Ton Duc Thang","Pier"), grab("Grab to pier")], eta:"Car 5–10 min"},
     {time:"3 PM", what:"Ferry back from Ho May terminal", note:"Back around 5 PM.", acts:[map("Ho May ferry terminal Vung Tau","Terminal")]},
     {track:"David + Mom & Dad · Saigon", b:1},
-    {time:"6 PM", what:`Seafood buffet: ${PL("Saigon Café, Sheraton","Saigon Café Sheraton Saigon")}`, pick:"Top pick", note:"Seafood dinner buffet daily 6–10 PM; lunch buffet 12–2:30 PM. Lobster, crab and oysters at live stations. Google 4.7 (1,216 reviews), Nov 2026.", acts:[B("Map",BUF.sheraton.map,"map"), go("Reserve",BUF.sheraton.res)], eta:"Walk 6 min"},
     {time:"Alt", what:PL("The Canvas, LOTTE Hotel Saigon","The Canvas Restaurant, LOTTE Hotel Saigon, 2A-4A Ton Duc Thang, Ho Chi Minh City"), pick:"Alt", alt:1, note:"Buffet dinner daily 6–10 PM, lunch 11:30 AM–2:30 PM, with seafood and lobster. Google 4.8 (1,164 reviews), Nov 2026.", acts:[B("Map",BUF.lotte.map,"map"), go("Book",BUF.lotte.res)], eta:"Car 4 min"},
-    {time:"Alt", what:`Seafood Sunday Brunch, ${PL("Novotel Saigon Centre","Food Exchange Restaurant, Novotel Saigon Centre, 167 Hai Ba Trung, Ho Chi Minh City")}`, pick:"Lunch", alt:1, note:"Sundays only, 11:30 AM–2:30 PM, at Food Exchange: lobster, crab, oysters. Google 4.6, Nov 2026.", acts:[B("Map",BUF.novotel.map,"map"), site("Details",BUF.novotel.res)], eta:"Car 5 min"}]},
+    {time:"Alt", what:`Seafood Sunday Brunch, ${PL("Novotel Saigon Centre","Food Exchange Restaurant, Novotel Saigon Centre, 167 Hai Ba Trung, Ho Chi Minh City")}`, pick:"Lunch", alt:1, note:"Sundays only, 11:30 AM–2:30 PM, at Food Exchange: lobster, crab, oysters. Google 4.6, Nov 2026.", acts:[B("Map",BUF.novotel.map,"map"), site("Details",BUF.novotel.res)], eta:"Car 5 min"},
+    {track:"Family dinner · all 13"},
+    {time:"6:30 PM", what:`Seafood buffet: ${PL("Saigon Café, Sheraton","Saigon Café Sheraton Saigon")}`, pick:"Reserved", note:"Reserved for 13. Two tables: 7 under David Tep and 6 under Thuy Nguyen. Google 4.7 (1,239 reviews).", acts:[B("Map",BUF.sheraton.map,"map")], eta:"Walk 6 min"}]},
   {d:"23", wd:"Mon Nov 23", t:"Markets and skyline", items:[
     {time:"8 AM", what:"Ben Thanh Market", acts:[map("Ben Thanh Market")], eta:"Walk 5–10 min"},
     {time:"4:30 PM", what:"Landmark 81 SkyView at sunset", acts:[grab(), map("Landmark 81 SkyView")], eta:"Grab 15–25 min"},
